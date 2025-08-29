@@ -1,4 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { Resend } from 'resend';
+
+const resend = new Resend(process.env.RESEND_API_KEY || 'your_resend_api_key_here');
 
 export async function POST(request: NextRequest) {
   try {
@@ -22,25 +25,65 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // TODO: Implement actual email sending logic here
-    // Example with a service like SendGrid, Resend, or Nodemailer:
-    /*
-         const emailData = {
-       to: 'john.smith@trucking.com',
-       from: 'noreply@trucking.com',
-       subject: `New Contact Form Submission from ${name}`,
-       text: `
-         Name: ${name}
-         Email: ${email}
-         Message: ${message}
-       `,
-     };
-    
-    // Send email using your preferred service
-    await sendEmail(emailData);
-    */
+    // Send email notification using Resend
+    try {
+      const { data, error } = await resend.emails.send({
+        from: 'onboarding@resend.dev',
+        to: ['tigerhilltransport@gmail.com'],
+        subject: `New Contact Form Submission from ${name}`,
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f4f4f9;">
+            <div style="background-color: #2f4550; color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0;">
+              <h1 style="margin: 0; font-size: 24px;">Tiger Hill Transport</h1>
+              <p style="margin: 5px 0 0 0; opacity: 0.9;">New Contact Form Submission</p>
+            </div>
+            
+            <div style="background-color: white; padding: 30px; border-radius: 0 0 8px 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+              <h2 style="color: #2f4550; margin-top: 0;">Contact Form Details</h2>
+              
+              <div style="margin-bottom: 20px;">
+                <strong style="color: #586f7c;">Name:</strong>
+                <p style="margin: 5px 0; color: #2f4550;">${name}</p>
+              </div>
+              
+              <div style="margin-bottom: 20px;">
+                <strong style="color: #586f7c;">Email:</strong>
+                <p style="margin: 5px 0; color: #2f4550;">${email}</p>
+              </div>
+              
+              <div style="margin-bottom: 20px;">
+                <strong style="color: #586f7c;">Message:</strong>
+                <p style="margin: 5px 0; color: #2f4550; line-height: 1.6; white-space: pre-wrap;">${message}</p>
+              </div>
+              
+              <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #b8dbd9;">
+                <p style="margin: 0; color: #586f7c; font-size: 14px;">
+                  This message was sent from the Tiger Hill Transport website contact form.
+                </p>
+                <p style="margin: 5px 0 0 0; color: #586f7c; font-size: 14px;">
+                  Time: ${new Date().toLocaleString()}
+                </p>
+              </div>
+            </div>
+          </div>
+        `,
+      });
 
-    // For now, just log the data
+      if (error) {
+        console.error('Resend error:', error);
+        return NextResponse.json(
+          { error: 'Failed to send email notification' },
+          { status: 500 }
+        );
+      }
+
+      console.log('Email sent successfully:', data);
+    } catch (emailError) {
+      console.error('Email sending error:', emailError);
+      // Don't fail the entire request if email fails
+    }
+
+    // Log the submission
     console.log('Contact form submission:', { name, email, message });
 
     return NextResponse.json(

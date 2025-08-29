@@ -7,9 +7,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Badge } from "@/components/ui/badge";
+
 import { Separator } from "@/components/ui/separator";
-import { CheckCircle, Phone, Mail, Truck, Shield, FileText, User, Award, Clock, MapPin, Star, Zap } from "lucide-react";
+import { CheckCircle, Mail, Truck, Shield, FileText, User, Award, Clock, MapPin, Star, Zap } from "lucide-react";
 
 export default function Home() {
   const [formData, setFormData] = useState({
@@ -61,7 +61,7 @@ export default function Home() {
   const credentials = [
     { name: "Insurance", icon: Shield, description: "Full coverage insurance" },
     { name: "Equipment Registration", icon: Truck, description: "All equipment properly registered" },
-    { name: "Driver License", icon: User, description: "Valid commercial driver's license" },
+    { name: "Driver License", icon: User, description: "Valid commercial driver&apos;s license" },
     { name: "Medical Certificate", icon: FileText, description: "Current medical certification" },
     { name: "Other Certifications", icon: CheckCircle, description: "Additional safety and compliance certifications" }
   ];
@@ -183,7 +183,7 @@ export default function Home() {
                 <p className="text-lg text-paynes-gray mb-6 leading-relaxed">
                   As a dedicated owner-operator, I bring a personal commitment to every delivery. With over 10 years 
                   of experience in the trucking industry, I understand the importance of reliability, safety, and 
-                  customer satisfaction in today's competitive market.
+                  customer satisfaction in today&apos;s competitive market.
                 </p>
                 <p className="text-lg text-paynes-gray mb-8 leading-relaxed">
                   My modern, well-maintained equipment and comprehensive insurance coverage ensure your cargo 
