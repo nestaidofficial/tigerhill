@@ -1,4 +1,4 @@
-# Tiger Hill Transport - Professional Trucking Website
+# Tiger Hill Transport LLC - Professional Trucking Website
 
 A modern, responsive single-page website for Tiger Hill Transport built with Next.js, Tailwind CSS, and Shadcn UI.
 

@@ -133,8 +133,16 @@
   * {
     @apply border-border outline-ring/50;
   }
+  
+  html {
+    overflow-x: hidden;
+  }
+  
   body {
     @apply bg-background text-foreground;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
   }
   
   /* Apply serif font to all headings */
@@ -167,3 +175,22 @@
 .border-paynes-gray { border-color: var(--paynes-gray); }
 .border-light-blue { border-color: var(--light-blue); }
 .border-ghost-white { border-color: var(--ghost-white); }
+
+/* Mobile responsiveness fixes */
+.container, .max-w-6xl, .max-w-4xl, .max-w-2xl {
+  max-width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Ensure all sections don't overflow */
+section {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Fix for any potential wide elements */
+* {
+  max-width: 100%;
+  box-sizing: border-box;
+}

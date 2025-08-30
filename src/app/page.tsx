@@ -59,11 +59,11 @@ export default function Home() {
   };
 
   const credentials = [
-    { name: "Insurance", icon: Shield, description: "Full coverage insurance" },
-    { name: "Equipment Registration", icon: Truck, description: "All equipment properly registered" },
-    { name: "Driver License", icon: User, description: "Valid commercial driver&apos;s license" },
-    { name: "Medical Certificate", icon: FileText, description: "Current medical certification" },
-    { name: "Other Certifications", icon: CheckCircle, description: "Additional safety and compliance certifications" }
+    { name: "Insurance", icon: Shield, description: "Bobtail and physical damage insurance coverage" },
+    { name: "Equipment Registration", icon: Truck, description: "Valid truck and trailer registration" },
+    { name: "Driver License", icon: User, description: "Valid commercial driver&apos;s license (CDL)" },
+    { name: "Medical Certificate", icon: FileText, description: "Current DOT medical certificate" },
+    { name: "Other Certifications", icon: CheckCircle, description: "Additional safety and compliance certifications as required" }
   ];
 
   return (
@@ -84,17 +84,20 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
-            TIGER HILL TRANSPORT LTD
+            TIGER HILL TRANSPORT LLC
           </h1>
           <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-orange-200">
-            Driver / Owner Operator
+            Carrier & Owner-Operator Partner
           </h2>
-          <p className="text-xl md:text-2xl mb-8 text-gray-100 max-w-2xl mx-auto">
-            Reliable and Professional Trucking Services
+          <p className="text-xl md:text-2xl mb-4 text-gray-100 max-w-2xl mx-auto">
+            MC: 1091445 | DOT: 3394301
+          </p>
+          <p className="text-lg md:text-xl mb-8 text-gray-200 max-w-2xl mx-auto">
+            Partner with us for reliable freight opportunities
           </p>
           <Button 
             size="lg" 
-            className="bg-charcoal hover:bg-paynes-gray text-ghost-white px-8 py-3 text-lg transition-colors duration-300"
+            className="bg-orange-400 hover:bg-orange-300 text-white px-12 py-4 text-xl font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
           >
             Get In Touch
@@ -110,31 +113,31 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section className="py-20 px-4 bg-gradient-to-br from-ghost-white to-white">
+      <section className="py-20 px-4 bg-gradient-to-br from-ghost-white to-white" data-aos="fade-up">
         <div className="max-w-6xl mx-auto">
                       <div className="text-center mb-16">
               <div className="inline-flex items-center justify-center w-16 h-16 bg-charcoal/10 rounded-full mb-6">
                 <Award className="w-8 h-8 text-charcoal" />
               </div>
-              <h2 className="text-4xl font-bold text-charcoal mb-4">About Tiger Hill Transport</h2>
+              <h2 className="text-4xl font-bold text-charcoal mb-4">About Tiger Hill Transport LLC</h2>
               <Separator className="w-24 mx-auto bg-charcoal" />
               <p className="text-lg text-paynes-gray mt-6 max-w-2xl mx-auto">
-                Delivering excellence across North America with precision, reliability, and unmatched professionalism
+                Connecting owner-operators with quality freight opportunities across the United States
               </p>
             </div>
           
-                      <div className="grid lg:grid-cols-3 gap-8 mb-16">
+                      <div className="grid lg:grid-cols-3 gap-8 mb-16" data-aos="fade-up" data-aos-delay="200">
               {/* Experience Card */}
               <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-white">
                 <CardHeader className="text-center pb-4">
                   <div className="mx-auto w-20 h-20 bg-charcoal/10 rounded-full flex items-center justify-center mb-6">
                     <Clock className="w-10 h-10 text-charcoal" />
                   </div>
-                  <CardTitle className="text-2xl font-bold text-charcoal">10+ Years Experience</CardTitle>
+                  <CardTitle className="text-2xl font-bold text-charcoal">Established Carrier</CardTitle>
                 </CardHeader>
                 <CardContent className="text-center">
                   <p className="text-paynes-gray text-lg">
-                    Over a decade of professional trucking experience with a proven track record of safety and reliability
+                    Licensed carrier with MC and DOT authority, providing owner-operators with quality freight opportunities
                   </p>
                 </CardContent>
               </Card>
@@ -145,11 +148,11 @@ export default function Home() {
                   <div className="mx-auto w-20 h-20 bg-paynes-gray/10 rounded-full flex items-center justify-center mb-6">
                     <MapPin className="w-10 h-10 text-paynes-gray" />
                   </div>
-                  <CardTitle className="text-2xl font-bold text-charcoal">Nationwide Coverage</CardTitle>
+                  <CardTitle className="text-2xl font-bold text-charcoal">Nationwide Freight</CardTitle>
                 </CardHeader>
                 <CardContent className="text-center">
                   <p className="text-paynes-gray text-lg">
-                    Comprehensive transportation services across all 48 continental states and Canada
+                    Access to freight lanes across all 48 continental states with established broker relationships
                   </p>
                 </CardContent>
               </Card>
@@ -160,35 +163,36 @@ export default function Home() {
                   <div className="mx-auto w-20 h-20 bg-light-blue/20 rounded-full flex items-center justify-center mb-6">
                     <Star className="w-10 h-10 text-paynes-gray" />
                   </div>
-                  <CardTitle className="text-2xl font-bold text-charcoal">Premium Service</CardTitle>
+                  <CardTitle className="text-2xl font-bold text-charcoal">Owner-Operator Support</CardTitle>
                 </CardHeader>
                 <CardContent className="text-center">
                   <p className="text-paynes-gray text-lg">
-                    Commitment to excellence with on-time delivery and careful handling of your valuable cargo
+                    Dedicated support for owner-operators with competitive rates and reliable settlements
                   </p>
                 </CardContent>
               </Card>
             </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-center" data-aos="fade-up" data-aos-delay="400">
                           <div>
                 <div className="flex items-center mb-6">
                   <div className="w-12 h-12 bg-charcoal/10 rounded-full flex items-center justify-center mr-4">
                     <Truck className="w-6 h-6 text-charcoal" />
                   </div>
                   <h3 className="text-3xl font-bold text-charcoal">
-                    Professional Driver & Owner Operator
+                    Licensed Carrier & Owner-Operator Partner
                   </h3>
                 </div>
                 <p className="text-lg text-paynes-gray mb-6 leading-relaxed">
-                  As a dedicated owner-operator, I bring a personal commitment to every delivery. With over 10 years 
-                  of experience in the trucking industry, I understand the importance of reliability, safety, and 
-                  customer satisfaction in today&apos;s competitive market.
+                  Tiger Hill Transport LLC is a licensed carrier (MC: 1091445, DOT: 3394301) that partners with 
+                  qualified owner-operators to provide reliable freight transportation services. We connect 
+                  independent contractors with quality freight opportunities while maintaining the highest 
+                  standards of safety and compliance.
                 </p>
                 <p className="text-lg text-paynes-gray mb-8 leading-relaxed">
-                  My modern, well-maintained equipment and comprehensive insurance coverage ensure your cargo 
-                  arrives safely and on time. I specialize in long-haul transportation, expedited shipping, 
-                  and specialized freight handling with a focus on temperature-controlled and sensitive cargo.
+                  Our owner-operators benefit from established broker relationships, competitive rates, and 
+                  reliable weekly settlements. We handle the administrative burden while you focus on what 
+                  you do best - driving and delivering freight safely and on time.
                 </p>
                 
                 <div className="flex items-center space-x-4">
@@ -210,7 +214,7 @@ export default function Home() {
             <div className="bg-gradient-to-br from-charcoal/5 to-light-blue/10 p-8 rounded-2xl border border-charcoal/10">
               <h4 className="text-3xl font-bold text-charcoal mb-8 flex items-center">
                 <Zap className="w-8 h-8 text-charcoal mr-4" />
-                Services Offered
+                Partnership Benefits
               </h4>
               <div className="grid gap-6">
                 <div className="flex items-center p-4 bg-white/50 rounded-lg hover:bg-white/70 transition-colors">
@@ -218,8 +222,8 @@ export default function Home() {
                     <Truck className="w-8 h-8 text-charcoal" />
                   </div>
                   <div>
-                    <h5 className="text-xl font-bold text-charcoal mb-1">Long-Haul Transportation</h5>
-                    <p className="text-base text-paynes-gray">Cross-country and interstate deliveries</p>
+                    <h5 className="text-xl font-bold text-charcoal mb-1">Quality Freight Opportunities</h5>
+                    <p className="text-base text-paynes-gray">Access to established broker relationships and premium loads</p>
                   </div>
                 </div>
                 
@@ -228,8 +232,8 @@ export default function Home() {
                     <Zap className="w-8 h-8 text-paynes-gray" />
                   </div>
                   <div>
-                    <h5 className="text-xl font-bold text-charcoal mb-1">Expedited Shipping</h5>
-                    <p className="text-base text-paynes-gray">Time-sensitive and rush deliveries</p>
+                    <h5 className="text-xl font-bold text-charcoal mb-1">Competitive Rates</h5>
+                    <p className="text-base text-paynes-gray">Fair compensation with only 8% carrier fee</p>
                   </div>
                 </div>
                 
@@ -238,8 +242,8 @@ export default function Home() {
                     <Shield className="w-8 h-8 text-paynes-gray" />
                   </div>
                   <div>
-                    <h5 className="text-xl font-bold text-charcoal mb-1">Specialized Freight</h5>
-                    <p className="text-base text-paynes-gray">Temperature-controlled and sensitive cargo</p>
+                    <h5 className="text-xl font-bold text-charcoal mb-1">Weekly Settlements</h5>
+                    <p className="text-base text-paynes-gray">Reliable weekly payments with detailed settlement sheets</p>
                   </div>
                 </div>
                 
@@ -248,8 +252,8 @@ export default function Home() {
                     <MapPin className="w-8 h-8 text-charcoal" />
                   </div>
                   <div>
-                    <h5 className="text-xl font-bold text-charcoal mb-1">Nationwide Coverage</h5>
-                    <p className="text-base text-paynes-gray">Service to all 48 states and Canada</p>
+                    <h5 className="text-xl font-bold text-charcoal mb-1">Administrative Support</h5>
+                    <p className="text-base text-paynes-gray">We handle paperwork, compliance, and broker relationships</p>
                   </div>
                 </div>
               </div>
@@ -259,20 +263,20 @@ export default function Home() {
       </section>
 
       {/* Credentials Section */}
-      <section className="py-20 px-4 bg-gradient-to-br from-ghost-white via-white to-ghost-white">
+      <section className="py-20 px-4 bg-gradient-to-br from-ghost-white via-white to-ghost-white" data-aos="fade-up">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-charcoal/10 rounded-full mb-6">
               <Shield className="w-8 h-8 text-charcoal" />
             </div>
-            <h2 className="text-4xl font-bold text-charcoal mb-4">My Credentials</h2>
+            <h2 className="text-4xl font-bold text-charcoal mb-4">Required Documents</h2>
             <Separator className="w-24 mx-auto bg-charcoal" />
             <p className="text-lg text-paynes-gray mt-6 max-w-2xl mx-auto">
-              All necessary documentation and certifications are current and in compliance with federal regulations
+              Owner-operators must provide current documentation to partner with Tiger Hill Transport LLC
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" data-aos="fade-up" data-aos-delay="200">
             {credentials.map((credential, index) => (
                              <Card 
                  key={index} 
@@ -321,19 +325,102 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact Form Section */}
-      <section id="contact" className="py-20 px-4 bg-gradient-to-br from-ghost-white to-white">
+      {/* Lease Agreement Section */}
+      <section className="py-20 px-4 bg-gradient-to-br from-charcoal/5 to-light-blue/10" data-aos="fade-up">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-charcoal mb-4">Get In Touch</h2>
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-charcoal/10 rounded-full mb-6">
+              <FileText className="w-8 h-8 text-charcoal" />
+            </div>
+            <h2 className="text-4xl font-bold text-charcoal mb-4">Partnership Terms</h2>
             <Separator className="w-24 mx-auto bg-charcoal" />
-            <p className="text-lg text-paynes-gray mt-4 max-w-2xl mx-auto">
-              Ready to discuss your transportation needs? Contact me for a quote or to learn more about my services.
+            <p className="text-lg text-paynes-gray mt-6 max-w-2xl mx-auto">
+              Clear, transparent terms for our owner-operator partnerships
             </p>
           </div>
-                      <div className="grid md:grid-cols-2 gap-12">
+          
+          <div className="grid md:grid-cols-2 gap-8" data-aos="fade-up" data-aos-delay="200">
+            <Card className="border-0 shadow-lg bg-white">
+              <CardHeader>
+                <CardTitle className="text-2xl font-bold text-charcoal">Compensation</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="flex items-center">
+                  <div className="w-8 h-8 bg-charcoal/10 rounded-full flex items-center justify-center mr-3">
+                    <span className="text-charcoal font-bold">8%</span>
+                  </div>
+                  <p className="text-paynes-gray">Carrier fee - only 8% of gross revenue</p>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-8 h-8 bg-light-blue/20 rounded-full flex items-center justify-center mr-3">
+                    <Clock className="w-4 h-4 text-light-blue" />
+                  </div>
+                  <p className="text-paynes-gray">Weekly settlements with detailed sheets</p>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-8 h-8 bg-paynes-gray/10 rounded-full flex items-center justify-center mr-3">
+                    <Shield className="w-4 h-4 text-paynes-gray" />
+                  </div>
+                  <p className="text-paynes-gray">Direct payment collection from brokers</p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-lg bg-white">
+              <CardHeader>
+                <CardTitle className="text-2xl font-bold text-charcoal">Responsibilities</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="flex items-center">
+                  <div className="w-8 h-8 bg-charcoal/10 rounded-full flex items-center justify-center mr-3">
+                    <Truck className="w-4 h-4 text-charcoal" />
+                  </div>
+                  <p className="text-paynes-gray">Provide your own truck and equipment</p>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-8 h-8 bg-light-blue/20 rounded-full flex items-center justify-center mr-3">
+                    <Zap className="w-4 h-4 text-light-blue" />
+                  </div>
+                  <p className="text-paynes-gray">Fuel, maintenance, and operating costs</p>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-8 h-8 bg-paynes-gray/10 rounded-full flex items-center justify-center mr-3">
+                    <User className="w-4 h-4 text-paynes-gray" />
+                  </div>
+                  <p className="text-paynes-gray">Maintain DOT compliance and safety standards</p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="mt-12 text-center" data-aos="fade-up" data-aos-delay="400">
+            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-charcoal mb-4">Independent Contractor Status</h3>
+                <p className="text-paynes-gray leading-relaxed">
+                  You operate as an independent contractor under our authority. You&apos;re responsible for your own 
+                  taxes, workers&apos; compensation, and benefits. We provide the freight opportunities and handle 
+                  the administrative burden of broker relationships and compliance.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Form Section */}
+      <section id="contact" className="py-20 px-4 bg-gradient-to-br from-ghost-white to-white" data-aos="fade-up">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-charcoal mb-4">Partner With Us</h2>
+            <Separator className="w-24 mx-auto bg-charcoal" />
+            <p className="text-lg text-paynes-gray mt-4 max-w-2xl mx-auto">
+              Ready to partner with Tiger Hill Transport LLC? Contact us to learn more about our owner-operator opportunities.
+            </p>
+          </div>
+                      <div className="grid md:grid-cols-2 gap-12" data-aos="fade-up" data-aos-delay="200">
               <div>
-                <h3 className="text-2xl font-bold text-charcoal mb-6">Contact Information</h3>
+                <h3 className="text-2xl font-bold text-charcoal mb-6">Company Information</h3>
                 <div className="space-y-6">
                   <div className="flex items-center">
                     <div className="w-12 h-12 bg-charcoal/10 rounded-full flex items-center justify-center mr-4">
@@ -341,7 +428,7 @@ export default function Home() {
                     </div>
                     <div>
                       <p className="font-semibold text-charcoal">Email</p>
-                      <p className="text-paynes-gray">john.smith@trucking.com</p>
+                      <p className="text-paynes-gray">tigerhilltransport@gmail.com</p>
                     </div>
                   </div>
                   <div className="flex items-center">
@@ -349,23 +436,23 @@ export default function Home() {
                       <Truck className="w-6 h-6 text-charcoal" />
                     </div>
                     <div>
-                      <p className="font-semibold text-charcoal">Service Area</p>
-                      <p className="text-paynes-gray">Nationwide coverage</p>
+                      <p className="font-semibold text-charcoal">Address</p>
+                      <p className="text-paynes-gray">220 Ash Dr, Elizabeth, PA 15037</p>
                     </div>
                   </div>
                 </div>
               </div>
                           <Card className="border border-charcoal/10 shadow-lg bg-white">
                 <CardHeader className="pb-6">
-                  <CardTitle className="text-2xl font-bold text-charcoal">Send a Message</CardTitle>
+                  <CardTitle className="text-2xl font-bold text-charcoal">Apply to Partner</CardTitle>
                   <CardDescription className="text-paynes-gray">
-                    Fill out the form below and I&apos;ll get back to you within 24 hours.
+                    Fill out the form below and we&apos;ll get back to you within 24 hours.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <form onSubmit={handleSubmit} className="space-y-5">
                     <div>
-                      <Label htmlFor="name" className="text-charcoal font-semibold mb-2 block">Name</Label>
+                      <Label htmlFor="name" className="text-charcoal font-semibold mb-3 block text-lg">Name</Label>
                       <Input
                         id="name"
                         name="name"
@@ -373,12 +460,12 @@ export default function Home() {
                         onChange={handleInputChange}
                         placeholder="Your full name"
                         required
-                        className="rounded-lg border-charcoal/20 focus:border-charcoal focus:ring-charcoal/10 px-4 py-3 text-base transition-all duration-200 hover:border-charcoal/40 bg-ghost-white/50"
+                        className="rounded-lg border-charcoal/20 focus:border-charcoal focus:ring-charcoal/10 px-6 py-4 text-lg transition-all duration-200 hover:border-charcoal/40 bg-ghost-white/50"
                       />
                     </div>
 
                     <div>
-                      <Label htmlFor="email" className="text-charcoal font-semibold mb-2 block">Email</Label>
+                      <Label htmlFor="email" className="text-charcoal font-semibold mb-3 block text-lg">Email</Label>
                       <Input
                         id="email"
                         name="email"
@@ -387,28 +474,28 @@ export default function Home() {
                         onChange={handleInputChange}
                         placeholder="your.email@example.com"
                         required
-                        className="rounded-lg border-charcoal/20 focus:border-charcoal focus:ring-charcoal/10 px-4 py-3 text-base transition-all duration-200 hover:border-charcoal/40 bg-ghost-white/50"
+                        className="rounded-lg border-charcoal/20 focus:border-charcoal focus:ring-charcoal/10 px-6 py-4 text-lg transition-all duration-200 hover:border-charcoal/40 bg-ghost-white/50"
                       />
                     </div>
                     <div>
-                      <Label htmlFor="message" className="text-charcoal font-semibold mb-2 block">Message</Label>
+                      <Label htmlFor="message" className="text-charcoal font-semibold mb-3 block text-lg">Message</Label>
                       <Textarea
                         id="message"
                         name="message"
                         value={formData.message}
                         onChange={handleInputChange}
-                        placeholder="Tell me about your transportation needs..."
-                        rows={4}
+                        placeholder="Tell us about your trucking experience and equipment..."
+                        rows={5}
                         required
-                        className="rounded-lg border-charcoal/20 focus:border-charcoal focus:ring-charcoal/10 px-4 py-3 text-base transition-all duration-200 hover:border-charcoal/40 bg-ghost-white/50 resize-none"
+                        className="rounded-lg border-charcoal/20 focus:border-charcoal focus:ring-charcoal/10 px-6 py-4 text-lg transition-all duration-200 hover:border-charcoal/40 bg-ghost-white/50 resize-none"
                       />
                     </div>
                     <Button 
                       type="submit" 
-                      className="w-full bg-charcoal hover:bg-paynes-gray text-ghost-white rounded-lg py-3 text-base font-semibold shadow-md hover:shadow-lg transition-all duration-200 mt-4"
+                      className="w-full bg-charcoal hover:bg-paynes-gray text-ghost-white rounded-lg py-4 text-lg font-semibold shadow-md hover:shadow-lg transition-all duration-200 mt-6"
                       disabled={isSubmitting}
                     >
-                      {isSubmitting ? "Sending..." : "Send Message"}
+                      {isSubmitting ? "Sending..." : "Apply Now"}
                     </Button>
                     {submitMessage && (
                       <p className={`text-sm mt-3 text-center ${submitMessage.includes('Thank you') ? 'text-green-600' : 'text-red-600'}`}>
@@ -435,18 +522,18 @@ export default function Home() {
               <div className="space-y-2 text-gray-400">
                 <p className="flex items-center justify-center md:justify-start">
                   <Mail className="w-4 h-4 mr-2" />
-                  john.smith@trucking.com
+                  tigerhilltransport@gmail.com
                 </p>
               </div>
             </div>
             <div>
-              <h4 className="text-lg font-semibold mb-4">Service Area</h4>
-              <p className="text-gray-400">Nationwide coverage for all your transportation needs</p>
+              <h4 className="text-lg font-semibold mb-4">Authority</h4>
+              <p className="text-gray-400">MC: 1091445 | DOT: 3394301</p>
             </div>
           </div>
           <Separator className="my-8 bg-gray-700" />
           <div className="text-center text-gray-400">
-            <p>&copy; 2024 Tiger Hill Transport Ltd. All rights reserved.</p>
+            <p>&copy; 2024 Tiger Hill Transport LLC. All rights reserved.</p>
           </div>
         </div>
       </footer>
