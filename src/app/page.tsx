@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -45,18 +45,18 @@ export default function Home() {
     };
   }, []);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
-  };
+  }, []);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     e.stopPropagation();
     
@@ -89,7 +89,7 @@ export default function Home() {
     } finally {
       setIsSubmitting(false);
     }
-  };
+  }, [formData, isSubmitting]);
 
   const credentials = [
     { name: "Insurance", icon: Shield, description: "Bobtail and physical damage insurance coverage" },
@@ -139,7 +139,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-x-hidden">
       {/* Hero Section */}
       <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Background Image */}
@@ -634,7 +634,7 @@ export default function Home() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+                <form key="contact-form" onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
                   <div>
                     <Label htmlFor="name" className="text-gray-900 font-semibold mb-2 sm:mb-3 block text-sm sm:text-base">Name</Label>
                     <Input
