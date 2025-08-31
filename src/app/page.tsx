@@ -2,14 +2,15 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-
+import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { CheckCircle, Mail, Truck, Shield, FileText, User, Award, Clock, MapPin, Star, Zap } from "lucide-react";
+import { CheckCircle, Mail, Truck, Shield, FileText, User, Award, Clock, MapPin, Star, Zap, ArrowRight } from "lucide-react";
 
 export default function Home() {
   const [formData, setFormData] = useState({
@@ -72,256 +73,365 @@ export default function Home() {
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
-        <Image
+          <Image
             src="/Hero_img.png"
             alt="Tiger Hill Transport truck on mountain road"
             fill
             className="object-cover object-bottom"
-          priority
-        />
+            priority
+          />
         </div>
-        {/* Overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/40"></div>
-        <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
-            TIGER HILL TRANSPORT LLC
-          </h1>
-          <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-orange-200">
-            Carrier & Owner-Operator Partner
-          </h2>
-          <p className="text-xl md:text-2xl mb-4 text-gray-100 max-w-2xl mx-auto">
-            MC: 1091445 | DOT: 3394301
-          </p>
-          <p className="text-lg md:text-xl mb-8 text-gray-200 max-w-2xl mx-auto">
-            Partner with us for reliable freight opportunities
-          </p>
-          <Button 
-            size="lg" 
-            className="bg-orange-400 hover:bg-orange-300 text-white px-12 py-4 text-xl font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+        {/* Dark gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
+        
+        <div className="relative z-10 text-center text-white px-6 max-w-6xl mx-auto">
+          <motion.h1 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-5xl md:text-7xl font-bold mb-6 tracking-tight"
           >
-            Get In Touch
-          </Button>
+            TIGER HILL TRANSPORT LLC
+          </motion.h1>
+          
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-2xl md:text-3xl font-semibold mb-4 text-orange-300"
+          >
+            Carrier & Owner-Operator Partner
+          </motion.h2>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="mb-8"
+          >
+            <Badge variant="outline" className="bg-white/10 border-white/30 text-white px-4 py-2 text-lg mb-4">
+              MC: 1091445 | DOT: 3394301
+            </Badge>
+            <p className="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto">
+              Partner with us for reliable freight opportunities
+            </p>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+          >
+            <Button 
+              size="lg" 
+              className="bg-orange-400 hover:bg-orange-500 text-white px-12 py-4 text-xl font-bold rounded-full shadow-2xl hover:shadow-orange-500/25 transition-all duration-300 transform hover:scale-105 group"
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              Get In Touch
+              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </motion.div>
         </div>
-        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
+        
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.2 }}
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        >
           <div className="animate-bounce">
             <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* About Section */}
-      <section className="py-20 px-4 bg-gradient-to-br from-ghost-white to-white" data-aos="fade-up">
+      <section className="py-24 px-6 bg-gradient-to-br from-gray-50 to-white">
         <div className="max-w-6xl mx-auto">
-                      <div className="text-center mb-16">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-charcoal/10 rounded-full mb-6">
-                <Award className="w-8 h-8 text-charcoal" />
-              </div>
-              <h2 className="text-4xl font-bold text-charcoal mb-4">About Tiger Hill Transport LLC</h2>
-              <Separator className="w-24 mx-auto bg-charcoal" />
-              <p className="text-lg text-paynes-gray mt-6 max-w-2xl mx-auto">
-                Connecting owner-operators with quality freight opportunities across the United States
-              </p>
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-20"
+          >
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-orange-400 to-orange-500 rounded-2xl mb-8 shadow-lg">
+              <Award className="w-10 h-10 text-white" />
             </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">About Tiger Hill Transport LLC</h2>
+            <Separator className="w-24 mx-auto bg-orange-400 mb-8" />
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Connecting owner-operators with quality freight opportunities across the United States
+            </p>
+          </motion.div>
           
-                      <div className="grid lg:grid-cols-3 gap-8 mb-16" data-aos="fade-up" data-aos-delay="200">
-              {/* Experience Card */}
-              <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-white">
-                <CardHeader className="text-center pb-4">
-                  <div className="mx-auto w-20 h-20 bg-charcoal/10 rounded-full flex items-center justify-center mb-6">
-                    <Clock className="w-10 h-10 text-charcoal" />
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="grid lg:grid-cols-3 gap-8 mb-20"
+          >
+            {/* Experience Card */}
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Card className="border-0 shadow-xl hover:shadow-2xl transition-all duration-300 bg-white rounded-2xl overflow-hidden group">
+                <CardHeader className="text-center pb-6 pt-8">
+                  <div className="mx-auto w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:shadow-blue-500/25 transition-shadow">
+                    <Clock className="w-12 h-12 text-white" />
                   </div>
-                  <CardTitle className="text-2xl font-bold text-charcoal">Established Carrier</CardTitle>
+                  <CardTitle className="text-2xl font-bold text-gray-900">Established Carrier</CardTitle>
                 </CardHeader>
-                <CardContent className="text-center">
-                  <p className="text-paynes-gray text-lg">
+                <CardContent className="text-center px-8 pb-8">
+                  <p className="text-gray-600 text-lg leading-relaxed">
                     Licensed carrier with MC and DOT authority, providing owner-operators with quality freight opportunities
                   </p>
                 </CardContent>
               </Card>
+            </motion.div>
 
-              {/* Coverage Card */}
-              <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-white">
-                <CardHeader className="text-center pb-4">
-                  <div className="mx-auto w-20 h-20 bg-paynes-gray/10 rounded-full flex items-center justify-center mb-6">
-                    <MapPin className="w-10 h-10 text-paynes-gray" />
+            {/* Coverage Card */}
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Card className="border-0 shadow-xl hover:shadow-2xl transition-all duration-300 bg-white rounded-2xl overflow-hidden group">
+                <CardHeader className="text-center pb-6 pt-8">
+                  <div className="mx-auto w-24 h-24 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:shadow-green-500/25 transition-shadow">
+                    <MapPin className="w-12 h-12 text-white" />
                   </div>
-                  <CardTitle className="text-2xl font-bold text-charcoal">Nationwide Freight</CardTitle>
+                  <CardTitle className="text-2xl font-bold text-gray-900">Nationwide Freight</CardTitle>
                 </CardHeader>
-                <CardContent className="text-center">
-                  <p className="text-paynes-gray text-lg">
+                <CardContent className="text-center px-8 pb-8">
+                  <p className="text-gray-600 text-lg leading-relaxed">
                     Access to freight lanes across all 48 continental states with established broker relationships
                   </p>
                 </CardContent>
               </Card>
+            </motion.div>
 
-              {/* Quality Card */}
-              <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-white">
-                <CardHeader className="text-center pb-4">
-                  <div className="mx-auto w-20 h-20 bg-light-blue/20 rounded-full flex items-center justify-center mb-6">
-                    <Star className="w-10 h-10 text-paynes-gray" />
+            {/* Quality Card */}
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Card className="border-0 shadow-xl hover:shadow-2xl transition-all duration-300 bg-white rounded-2xl overflow-hidden group">
+                <CardHeader className="text-center pb-6 pt-8">
+                  <div className="mx-auto w-24 h-24 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:shadow-purple-500/25 transition-shadow">
+                    <Star className="w-12 h-12 text-white" />
                   </div>
-                  <CardTitle className="text-2xl font-bold text-charcoal">Owner-Operator Support</CardTitle>
+                  <CardTitle className="text-2xl font-bold text-gray-900">Owner-Operator Support</CardTitle>
                 </CardHeader>
-                <CardContent className="text-center">
-                  <p className="text-paynes-gray text-lg">
+                <CardContent className="text-center px-8 pb-8">
+                  <p className="text-gray-600 text-lg leading-relaxed">
                     Dedicated support for owner-operators with competitive rates and reliable settlements
                   </p>
                 </CardContent>
               </Card>
-            </div>
+            </motion.div>
+          </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center" data-aos="fade-up" data-aos-delay="400">
-                          <div>
-                <div className="flex items-center mb-6">
-                  <div className="w-12 h-12 bg-charcoal/10 rounded-full flex items-center justify-center mr-4">
-                    <Truck className="w-6 h-6 text-charcoal" />
-                  </div>
-                  <h3 className="text-3xl font-bold text-charcoal">
-                    Licensed Carrier & Owner-Operator Partner
-                  </h3>
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="grid lg:grid-cols-2 gap-16 items-center"
+          >
+            <div>
+              <div className="flex items-center mb-8">
+                <div className="w-16 h-16 bg-gradient-to-br from-orange-400 to-orange-500 rounded-2xl flex items-center justify-center mr-6 shadow-lg">
+                  <Truck className="w-8 h-8 text-white" />
                 </div>
-                <p className="text-lg text-paynes-gray mb-6 leading-relaxed">
-                  Tiger Hill Transport LLC is a licensed carrier (MC: 1091445, DOT: 3394301) that partners with 
-                  qualified owner-operators to provide reliable freight transportation services. We connect 
-                  independent contractors with quality freight opportunities while maintaining the highest 
-                  standards of safety and compliance.
-                </p>
-                <p className="text-lg text-paynes-gray mb-8 leading-relaxed">
-                  Our owner-operators benefit from established broker relationships, competitive rates, and 
-                  reliable weekly settlements. We handle the administrative burden while you focus on what 
-                  you do best - driving and delivering freight safely and on time.
-                </p>
-                
-                <div className="flex items-center space-x-4">
-                  <div className="flex items-center">
-                    <Zap className="w-5 h-5 text-charcoal mr-2" />
-                    <span className="text-sm font-medium text-paynes-gray">24/7 Availability</span>
-                  </div>
-                  <div className="flex items-center">
-                    <Shield className="w-5 h-5 text-paynes-gray mr-2" />
-                    <span className="text-sm font-medium text-paynes-gray">Fully Insured</span>
-                  </div>
-                  <div className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-light-blue mr-2" />
-                    <span className="text-sm font-medium text-paynes-gray">Licensed & Certified</span>
-                  </div>
-                </div>
+                <h3 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
+                  Licensed Carrier & Owner-Operator Partner
+                </h3>
               </div>
-            
-            <div className="bg-gradient-to-br from-charcoal/5 to-light-blue/10 p-8 rounded-2xl border border-charcoal/10">
-              <h4 className="text-3xl font-bold text-charcoal mb-8 flex items-center">
-                <Zap className="w-8 h-8 text-charcoal mr-4" />
-                Partnership Benefits
-              </h4>
-              <div className="grid gap-6">
-                <div className="flex items-center p-4 bg-white/50 rounded-lg hover:bg-white/70 transition-colors">
-                  <div className="w-16 h-16 bg-charcoal/10 rounded-full flex items-center justify-center mr-6">
-                    <Truck className="w-8 h-8 text-charcoal" />
-                  </div>
-                  <div>
-                    <h5 className="text-xl font-bold text-charcoal mb-1">Quality Freight Opportunities</h5>
-                    <p className="text-base text-paynes-gray">Access to established broker relationships and premium loads</p>
-                  </div>
+              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                Tiger Hill Transport LLC is a licensed carrier (MC: 1091445, DOT: 3394301) that partners with 
+                qualified owner-operators to provide reliable freight transportation services. We connect 
+                independent contractors with quality freight opportunities while maintaining the highest 
+                standards of safety and compliance.
+              </p>
+              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                Our owner-operators benefit from established broker relationships, competitive rates, and 
+                reliable weekly settlements. We handle the administrative burden while you focus on what 
+                you do best - driving and delivering freight safely and on time.
+              </p>
+              
+              <div className="flex flex-wrap items-center gap-6">
+                <div className="flex items-center bg-white px-4 py-2 rounded-full shadow-md">
+                  <Zap className="w-5 h-5 text-orange-500 mr-2" />
+                  <span className="text-sm font-medium text-gray-700">24/7 Availability</span>
                 </div>
-                
-                <div className="flex items-center p-4 bg-white/50 rounded-lg hover:bg-white/70 transition-colors">
-                  <div className="w-16 h-16 bg-paynes-gray/10 rounded-full flex items-center justify-center mr-6">
-                    <Zap className="w-8 h-8 text-paynes-gray" />
-                  </div>
-                  <div>
-                    <h5 className="text-xl font-bold text-charcoal mb-1">Competitive Rates</h5>
-                    <p className="text-base text-paynes-gray">Fair compensation with only 8% carrier fee</p>
-                  </div>
+                <div className="flex items-center bg-white px-4 py-2 rounded-full shadow-md">
+                  <Shield className="w-5 h-5 text-green-500 mr-2" />
+                  <span className="text-sm font-medium text-gray-700">Fully Insured</span>
                 </div>
-                
-                <div className="flex items-center p-4 bg-white/50 rounded-lg hover:bg-white/70 transition-colors">
-                  <div className="w-16 h-16 bg-light-blue/20 rounded-full flex items-center justify-center mr-6">
-                    <Shield className="w-8 h-8 text-paynes-gray" />
-                  </div>
-                  <div>
-                    <h5 className="text-xl font-bold text-charcoal mb-1">Weekly Settlements</h5>
-                    <p className="text-base text-paynes-gray">Reliable weekly payments with detailed settlement sheets</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-center p-4 bg-white/50 rounded-lg hover:bg-white/70 transition-colors">
-                  <div className="w-16 h-16 bg-charcoal/10 rounded-full flex items-center justify-center mr-6">
-                    <MapPin className="w-8 h-8 text-charcoal" />
-                  </div>
-                  <div>
-                    <h5 className="text-xl font-bold text-charcoal mb-1">Administrative Support</h5>
-                    <p className="text-base text-paynes-gray">We handle paperwork, compliance, and broker relationships</p>
-                  </div>
+                <div className="flex items-center bg-white px-4 py-2 rounded-full shadow-md">
+                  <CheckCircle className="w-5 h-5 text-blue-500 mr-2" />
+                  <span className="text-sm font-medium text-gray-700">Licensed & Certified</span>
                 </div>
               </div>
             </div>
-          </div>
+            
+            <Card className="bg-gradient-to-br from-gray-50 to-white border-0 shadow-xl rounded-2xl overflow-hidden">
+              <CardHeader className="pb-6 pt-8">
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-500 rounded-xl flex items-center justify-center mr-4 shadow-lg">
+                    <Zap className="w-6 h-6 text-white" />
+                  </div>
+                  <h4 className="text-3xl font-bold text-gray-900">Partnership Benefits</h4>
+                </div>
+              </CardHeader>
+              <CardContent className="px-8 pb-8">
+                <div className="grid gap-6">
+                  <motion.div 
+                    whileHover={{ x: 5 }}
+                    className="flex items-center p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100"
+                  >
+                    <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mr-6 shadow-lg">
+                      <Truck className="w-8 h-8 text-white" />
+                    </div>
+                    <div>
+                      <h5 className="text-xl font-bold text-gray-900 mb-2">Quality Freight Opportunities</h5>
+                      <p className="text-gray-600">Access to established broker relationships and premium loads</p>
+                    </div>
+                  </motion.div>
+                  
+                  <motion.div 
+                    whileHover={{ x: 5 }}
+                    className="flex items-center p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100"
+                  >
+                    <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mr-6 shadow-lg">
+                      <Zap className="w-8 h-8 text-white" />
+                    </div>
+                    <div>
+                      <h5 className="text-xl font-bold text-gray-900 mb-2">Competitive Rates</h5>
+                      <p className="text-gray-600">Fair compensation with only 8% carrier fee</p>
+                    </div>
+                  </motion.div>
+                  
+                  <motion.div 
+                    whileHover={{ x: 5 }}
+                    className="flex items-center p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100"
+                  >
+                    <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mr-6 shadow-lg">
+                      <Shield className="w-8 h-8 text-white" />
+                    </div>
+                    <div>
+                      <h5 className="text-xl font-bold text-gray-900 mb-2">Weekly Settlements</h5>
+                      <p className="text-gray-600">Reliable weekly payments with detailed settlement sheets</p>
+                    </div>
+                  </motion.div>
+                  
+                  <motion.div 
+                    whileHover={{ x: 5 }}
+                    className="flex items-center p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100"
+                  >
+                    <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center mr-6 shadow-lg">
+                      <MapPin className="w-8 h-8 text-white" />
+                    </div>
+                    <div>
+                      <h5 className="text-xl font-bold text-gray-900 mb-2">Administrative Support</h5>
+                      <p className="text-gray-600">We handle paperwork, compliance, and broker relationships</p>
+                    </div>
+                  </motion.div>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
         </div>
       </section>
 
       {/* Credentials Section */}
-      <section className="py-20 px-4 bg-gradient-to-br from-ghost-white via-white to-ghost-white" data-aos="fade-up">
+      <section className="py-24 px-6 bg-gradient-to-br from-gray-900 to-gray-800">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-charcoal/10 rounded-full mb-6">
-              <Shield className="w-8 h-8 text-charcoal" />
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-20"
+          >
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-orange-400 to-orange-500 rounded-2xl mb-8 shadow-lg">
+              <Shield className="w-10 h-10 text-white" />
             </div>
-            <h2 className="text-4xl font-bold text-charcoal mb-4">Required Documents</h2>
-            <Separator className="w-24 mx-auto bg-charcoal" />
-            <p className="text-lg text-paynes-gray mt-6 max-w-2xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">Required Documents</h2>
+            <Separator className="w-24 mx-auto bg-orange-400 mb-8" />
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
               Owner-operators must provide current documentation to partner with Tiger Hill Transport LLC
             </p>
-          </div>
+          </motion.div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" data-aos="fade-up" data-aos-delay="200">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
             {credentials.map((credential, index) => (
-                             <Card 
-                 key={index} 
-                 className="group relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 bg-white hover:bg-gradient-to-br hover:from-charcoal/5 hover:to-light-blue/10"
-               >
-                 <div className="absolute inset-0 bg-gradient-to-r from-charcoal/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                 <CardHeader className="text-center relative z-10">
-                   <div className="mx-auto w-16 h-16 bg-gradient-to-br from-charcoal/10 to-light-blue/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                     <credential.icon className="w-8 h-8 text-charcoal group-hover:text-paynes-gray transition-colors" />
-                   </div>
-                   <CardTitle className="text-xl font-bold text-charcoal group-hover:text-paynes-gray transition-colors">
-                     {credential.name}
-                   </CardTitle>
-                 </CardHeader>
-                 <CardContent className="text-center relative z-10">
-                   <p className="text-paynes-gray leading-relaxed">
-                     {credential.description}
-                   </p>
-                 </CardContent>
-                 
-                 {/* Decorative corner element */}
-                 <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-charcoal/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-               </Card>
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.05 }}
+                className="group"
+              >
+                <Card className="relative overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-300 bg-white rounded-2xl">
+                  <div className="absolute inset-0 bg-gradient-to-br from-orange-400/5 to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <CardHeader className="text-center relative z-10 pb-6 pt-8">
+                    <div className="mx-auto w-20 h-20 bg-gradient-to-br from-orange-400 to-orange-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:shadow-orange-500/25 transition-shadow">
+                      <credential.icon className="w-10 h-10 text-white" />
+                    </div>
+                    <CardTitle className="text-xl font-bold text-gray-900">
+                      {credential.name}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="text-center relative z-10 px-8 pb-8">
+                    <p className="text-gray-600 leading-relaxed">
+                      {credential.description}
+                    </p>
+                  </CardContent>
+                  
+                  {/* Gradient border effect */}
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-orange-400 to-orange-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300 -z-10"></div>
+                </Card>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
           
-                     {/* Additional trust indicators */}
-           <div className="mt-16 text-center">
-             <div className="inline-flex items-center space-x-8 bg-white/80 backdrop-blur-sm rounded-2xl px-8 py-6 shadow-lg border border-charcoal/10">
-               <div className="flex items-center space-x-2">
-                 <div className="w-3 h-3 bg-charcoal rounded-full animate-pulse"></div>
-                 <span className="text-sm font-medium text-paynes-gray">All Certifications Current</span>
-               </div>
-               <div className="w-px h-6 bg-light-blue"></div>
-               <div className="flex items-center space-x-2">
-                 <div className="w-3 h-3 bg-paynes-gray rounded-full animate-pulse"></div>
-                 <span className="text-sm font-medium text-paynes-gray">Fully Compliant</span>
-               </div>
-               <div className="w-px h-6 bg-light-blue"></div>
-               <div className="flex items-center space-x-2">
-                 <div className="w-3 h-3 bg-light-blue rounded-full animate-pulse"></div>
-                 <span className="text-sm font-medium text-paynes-gray">Regularly Updated</span>
-               </div>
-             </div>
-           </div>
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="mt-20 text-center"
+          >
+            <div className="inline-flex items-center space-x-8 bg-white/10 backdrop-blur-sm rounded-2xl px-8 py-6 shadow-xl border border-white/20">
+              <div className="flex items-center space-x-3">
+                <div className="w-3 h-3 bg-orange-400 rounded-full animate-pulse"></div>
+                <span className="text-sm font-medium text-white">All Certifications Current</span>
+              </div>
+              <div className="w-px h-6 bg-white/30"></div>
+              <div className="flex items-center space-x-3">
+                <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                <span className="text-sm font-medium text-white">Fully Compliant</span>
+              </div>
+              <div className="w-px h-6 bg-white/30"></div>
+              <div className="flex items-center space-x-3">
+                <div className="w-3 h-3 bg-blue-400 rounded-full animate-pulse"></div>
+                <span className="text-sm font-medium text-white">Regularly Updated</span>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
