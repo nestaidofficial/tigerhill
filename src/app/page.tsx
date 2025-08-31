@@ -22,6 +22,27 @@ export default function Home() {
 
   useEffect(() => {
     setIsClient(true);
+    
+    // Ensure page always starts at top on refresh
+    window.scrollTo(0, 0);
+    
+    // Add scroll restoration
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    
+    // Handle page visibility change to reset scroll position
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        window.scrollTo(0, 0);
+      }
+    };
+    
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
   }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -35,8 +56,13 @@ export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    e.stopPropagation();
+    
+    // Prevent multiple submissions
+    if (isSubmitting) return;
+    
     setIsSubmitting(true);
     setSubmitMessage("");
 
@@ -57,7 +83,8 @@ export default function Home() {
       } else {
         setSubmitMessage(data.error || 'Something went wrong. Please try again.');
       }
-    } catch {
+    } catch (error) {
+      console.error('Form submission error:', error);
       setSubmitMessage('Network error. Please try again.');
     } finally {
       setIsSubmitting(false);
@@ -78,11 +105,11 @@ export default function Home() {
       return <div {...props}>{children}</div>;
     }
     return <motion.div 
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -30 }}
-      transition={{ duration: 0.5 }}
-      viewport={{ once: true }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      viewport={{ once: true, margin: "-50px" }}
       {...props}
     >{children}</motion.div>;
   };
@@ -93,8 +120,8 @@ export default function Home() {
       return <div {...props}>{children}</div>;
     }
     return <motion.div 
-      whileHover={{ scale: 1.05 }}
-      transition={{ duration: 0.3 }}
+      whileHover={{ scale: 1.02 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
       {...props}
     >{children}</motion.div>;
   };
@@ -105,7 +132,8 @@ export default function Home() {
       return <div {...props}>{children}</div>;
     }
     return <motion.div 
-      whileHover={{ x: 5 }}
+      whileHover={{ x: 3 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
       {...props}
     >{children}</motion.div>;
   };
@@ -113,7 +141,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
         <Image
@@ -160,7 +188,15 @@ export default function Home() {
             <Button 
               size="lg" 
               className="bg-orange-400 hover:bg-orange-500 text-white px-8 sm:px-12 py-3 sm:py-4 text-lg sm:text-xl font-bold rounded-full shadow-2xl hover:shadow-orange-500/25 transition-all duration-300 transform hover:scale-105 group"
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => {
+                const contactElement = document.getElementById('contact');
+                if (contactElement) {
+                  contactElement.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                  });
+                }
+              }}
             >
               Get In Touch
               <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
