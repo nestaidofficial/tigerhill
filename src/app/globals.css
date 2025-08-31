@@ -45,152 +45,78 @@
 
 :root {
   --radius: 0.625rem;
-  
-  /* Custom Color Palette */
-  --black: #000000;
-  --charcoal: #2f4550;
-  --paynes-gray: #586f7c;
-  --light-blue: #b8dbd9;
-  --ghost-white: #f4f4f9;
-  
-  /* Theme Colors */
-  --background: var(--ghost-white);
-  --foreground: var(--black);
-  --card: #ffffff;
-  --card-foreground: var(--black);
-  --popover: #ffffff;
-  --popover-foreground: var(--black);
-  --primary: var(--charcoal);
-  --primary-foreground: var(--ghost-white);
-  --secondary: var(--light-blue);
-  --secondary-foreground: var(--charcoal);
-  --muted: var(--light-blue);
-  --muted-foreground: var(--paynes-gray);
-  --accent: var(--paynes-gray);
-  --accent-foreground: var(--ghost-white);
-  --destructive: #ef4444;
-  --border: var(--light-blue);
-  --input: var(--light-blue);
-  --ring: var(--charcoal);
-  
-  /* Chart Colors */
-  --chart-1: var(--charcoal);
-  --chart-2: var(--paynes-gray);
-  --chart-3: var(--light-blue);
-  --chart-4: var(--black);
-  --chart-5: var(--ghost-white);
-  
-  /* Sidebar Colors */
-  --sidebar: var(--ghost-white);
-  --sidebar-foreground: var(--black);
-  --sidebar-primary: var(--charcoal);
-  --sidebar-primary-foreground: var(--ghost-white);
-  --sidebar-accent: var(--light-blue);
-  --sidebar-accent-foreground: var(--charcoal);
-  --sidebar-border: var(--light-blue);
-  --sidebar-ring: var(--charcoal);
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
 }
 
 .dark {
-  --background: var(--black);
-  --foreground: var(--ghost-white);
-  --card: var(--charcoal);
-  --card-foreground: var(--ghost-white);
-  --popover: var(--charcoal);
-  --popover-foreground: var(--ghost-white);
-  --primary: var(--light-blue);
-  --primary-foreground: var(--charcoal);
-  --secondary: var(--paynes-gray);
-  --secondary-foreground: var(--ghost-white);
-  --muted: var(--paynes-gray);
-  --muted-foreground: var(--light-blue);
-  --accent: var(--paynes-gray);
-  --accent-foreground: var(--ghost-white);
-  --destructive: #ef4444;
-  --border: var(--paynes-gray);
-  --input: var(--paynes-gray);
-  --ring: var(--light-blue);
-  
-  /* Chart Colors - Dark */
-  --chart-1: var(--light-blue);
-  --chart-2: var(--ghost-white);
-  --chart-3: var(--charcoal);
-  --chart-4: var(--paynes-gray);
-  --chart-5: var(--black);
-  
-  /* Sidebar Colors - Dark */
-  --sidebar: var(--charcoal);
-  --sidebar-foreground: var(--ghost-white);
-  --sidebar-primary: var(--light-blue);
-  --sidebar-primary-foreground: var(--charcoal);
-  --sidebar-accent: var(--paynes-gray);
-  --sidebar-accent-foreground: var(--ghost-white);
-  --sidebar-border: var(--paynes-gray);
-  --sidebar-ring: var(--light-blue);
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
-  
-  html {
-    overflow-x: hidden;
-  }
-  
   body {
     @apply bg-background text-foreground;
-    overflow-x: hidden;
-    width: 100%;
-    max-width: 100vw;
   }
-  
-  /* Apply serif font to all headings */
-  h1, h2, h3, h4, h5, h6 {
-    font-family: Georgia, 'Times New Roman', serif;
-  }
-}
-
-/* Custom trucking theme styles */
-.trucking-gradient {
-  background: linear-gradient(135deg, var(--charcoal) 0%, var(--paynes-gray) 100%);
-}
-
-.trucking-accent {
-  background: linear-gradient(135deg, var(--light-blue) 0%, var(--ghost-white) 100%);
-}
-
-/* Custom color utility classes */
-.bg-charcoal { background-color: var(--charcoal); }
-.bg-paynes-gray { background-color: var(--paynes-gray); }
-.bg-light-blue { background-color: var(--light-blue); }
-.bg-ghost-white { background-color: var(--ghost-white); }
-
-.text-charcoal { color: var(--charcoal); }
-.text-paynes-gray { color: var(--paynes-gray); }
-.text-light-blue { color: var(--light-blue); }
-.text-ghost-white { color: var(--ghost-white); }
-
-.border-charcoal { border-color: var(--charcoal); }
-.border-paynes-gray { border-color: var(--paynes-gray); }
-.border-light-blue { border-color: var(--light-blue); }
-.border-ghost-white { border-color: var(--ghost-white); }
-
-/* Mobile responsiveness fixes */
-.container, .max-w-6xl, .max-w-4xl, .max-w-2xl {
-  max-width: 100%;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-/* Ensure all sections don't overflow */
-section {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-/* Fix for any potential wide elements */
-* {
-  max-width: 100%;
-  box-sizing: border-box;
 }
