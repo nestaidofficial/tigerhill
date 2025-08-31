@@ -170,12 +170,24 @@
     transform: translateZ(0); /* Force hardware acceleration */
     will-change: auto; /* Optimize for changes */
     backface-visibility: hidden; /* Prevent flickering */
+    -webkit-user-select: text; /* Allow text selection */
+    user-select: text;
   }
   
   /* Prevent input focus issues on mobile */
   input:focus, textarea:focus {
     outline: none;
     -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: text;
+    user-select: text;
+  }
+  
+  /* Prevent form input glitching */
+  input[type="text"], input[type="email"], textarea {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   
   /* Prevent form submission issues */

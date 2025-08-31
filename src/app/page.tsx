@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -45,18 +45,19 @@ export default function Home() {
     };
   }, []);
 
-  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
-  }, []);
+  };
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState("");
+  const formRef = useRef<HTMLFormElement>(null);
 
-  const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     e.stopPropagation();
     
@@ -89,7 +90,7 @@ export default function Home() {
     } finally {
       setIsSubmitting(false);
     }
-  }, [formData, isSubmitting]);
+  };
 
   const credentials = [
     { name: "Insurance", icon: Shield, description: "Bobtail and physical damage insurance coverage" },
@@ -99,43 +100,19 @@ export default function Home() {
     { name: "Other Certifications", icon: CheckCircle, description: "Additional safety and compliance certifications as required" }
   ];
 
-  // Client-only motion wrapper to prevent hydration issues
-  const MotionDiv = ({ children, ...props }: { children: React.ReactNode; [key: string]: unknown }) => {
-    if (!isClient) {
-      return <div {...props}>{children}</div>;
-    }
-    return <motion.div 
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
-      viewport={{ once: true, margin: "-50px" }}
-      {...props}
-    >{children}</motion.div>;
+  // Simple div wrapper - no animations
+  const MotionDiv = ({ children, className }: { children: React.ReactNode; className?: string }) => {
+    return <div className={className}>{children}</div>;
   };
 
-  // Client-only motion wrapper for hover effects
-  const MotionCard = ({ children, ...props }: { children: React.ReactNode; [key: string]: unknown }) => {
-    if (!isClient) {
-      return <div {...props}>{children}</div>;
-    }
-    return <motion.div 
-      whileHover={{ scale: 1.02 }}
-      transition={{ duration: 0.2, ease: "easeOut" }}
-      {...props}
-    >{children}</motion.div>;
+  // Simple div wrapper for cards - no animations
+  const MotionCard = ({ children, className }: { children: React.ReactNode; className?: string }) => {
+    return <div className={className}>{children}</div>;
   };
 
-  // Client-only motion wrapper for slide effects
-  const MotionSlide = ({ children, ...props }: { children: React.ReactNode; [key: string]: unknown }) => {
-    if (!isClient) {
-      return <div {...props}>{children}</div>;
-    }
-    return <motion.div 
-      whileHover={{ x: 3 }}
-      transition={{ duration: 0.2, ease: "easeOut" }}
-      {...props}
-    >{children}</motion.div>;
+  // Simple div wrapper for slides - no animations
+  const MotionSlide = ({ children, className }: { children: React.ReactNode; className?: string }) => {
+    return <div className={className}>{children}</div>;
   };
 
   return (
@@ -156,35 +133,24 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
         
         <div className="relative z-10 text-center text-white px-4 sm:px-6 max-w-6xl mx-auto">
-          <MotionDiv 
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 tracking-tight leading-tight"
-          >
+          <MotionDiv className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 tracking-tight leading-tight">
             TIGER HILL TRANSPORT LLC
           </MotionDiv>
           
-          <MotionDiv 
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold mb-3 sm:mb-4 text-orange-300"
-          >
+          <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold mb-3 sm:mb-4 text-orange-300">
             Carrier & Owner-Operator Partner
-          </MotionDiv>
+          </div>
           
-          <MotionDiv
-            transition={{ duration: 0.5, delay: 0.6 }}
-            className="mb-6 sm:mb-8"
-          >
+          <div className="mb-6 sm:mb-8">
             <Badge variant="outline" className="bg-white/10 border-white/30 text-white px-3 sm:px-4 py-2 text-sm sm:text-base md:text-lg mb-3 sm:mb-4">
               MC: 1091445 | DOT: 3394301
             </Badge>
             <p className="text-base sm:text-lg md:text-xl text-gray-200 max-w-2xl mx-auto px-2">
               Partner with us for reliable freight opportunities
             </p>
-          </MotionDiv>
+          </div>
           
-          <MotionDiv
-            transition={{ duration: 0.5, delay: 0.8 }}
-          >
+          <div>
             <Button 
               size="lg" 
               className="bg-orange-400 hover:bg-orange-500 text-white px-8 sm:px-12 py-3 sm:py-4 text-lg sm:text-xl font-bold rounded-full shadow-2xl hover:shadow-orange-500/25 transition-all duration-300 transform hover:scale-105 group"
@@ -201,28 +167,22 @@ export default function Home() {
               Get In Touch
               <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
-          </MotionDiv>
+          </div>
         </div>
         
-        <MotionDiv 
-          transition={{ duration: 0.5, delay: 1.2 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        >
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
           <div className="animate-bounce">
             <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
           </div>
-        </MotionDiv>
+        </div>
       </section>
 
       {/* About Section */}
       <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 bg-gradient-to-br from-gray-50 to-white">
         <div className="max-w-6xl mx-auto">
-          <MotionDiv 
-            transition={{ duration: 0.5 }}
-            className="text-center mb-12 sm:mb-16 lg:mb-20"
-          >
+          <MotionDiv className="text-center mb-12 sm:mb-16 lg:mb-20">
             <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-orange-400 to-orange-500 rounded-2xl mb-6 sm:mb-8 shadow-lg">
               <Award className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
             </div>
@@ -233,13 +193,7 @@ export default function Home() {
             </p>
           </MotionDiv>
           
-          <MotionDiv 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16 lg:mb-20"
-          >
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16 lg:mb-20">
             {/* Experience Card */}
             <MotionCard>
               <Card className="border-0 shadow-xl hover:shadow-2xl transition-all duration-300 bg-white rounded-2xl overflow-hidden group h-full">
@@ -290,15 +244,9 @@ export default function Home() {
                 </CardContent>
               </Card>
             </MotionCard>
-          </MotionDiv>
+          </div>
 
-          <MotionDiv 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center"
-          >
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
             <div>
               <div className="flex flex-col sm:flex-row items-start sm:items-center mb-6 sm:mb-8">
                 <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-orange-400 to-orange-500 rounded-2xl flex items-center justify-center mr-4 sm:mr-6 shadow-lg mb-4 sm:mb-0">
@@ -389,17 +337,14 @@ export default function Home() {
                 </div>
               </CardContent>
             </Card>
-          </MotionDiv>
+          </div>
         </div>
       </section>
 
       {/* Credentials Section */}
       <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 bg-gradient-to-br from-gray-900 to-gray-800">
         <div className="max-w-6xl mx-auto">
-          <MotionDiv 
-            transition={{ duration: 0.5 }}
-            className="text-center mb-12 sm:mb-16 lg:mb-20"
-          >
+          <MotionDiv className="text-center mb-12 sm:mb-16 lg:mb-20">
             <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-orange-400 to-orange-500 rounded-2xl mb-6 sm:mb-8 shadow-lg">
               <Shield className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
             </div>
@@ -410,20 +355,10 @@ export default function Home() {
             </p>
           </MotionDiv>
           
-          <MotionDiv 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
-          >
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {credentials.map((credential, index) => (
               <MotionCard
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
                 className="group"
               >
                 <Card className="relative overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-300 bg-white rounded-2xl h-full">
@@ -447,15 +382,9 @@ export default function Home() {
                 </Card>
               </MotionCard>
             ))}
-          </MotionDiv>
+          </div>
           
-          <MotionDiv 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="mt-12 sm:mt-16 lg:mt-20 text-center"
-          >
+          <div className="mt-12 sm:mt-16 lg:mt-20 text-center">
             <div className="inline-flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6 lg:space-x-8 bg-white/10 backdrop-blur-sm rounded-2xl px-6 sm:px-8 py-4 sm:py-6 shadow-xl border border-white/20">
               <div className="flex items-center space-x-3">
                 <div className="w-3 h-3 bg-orange-400 rounded-full animate-pulse"></div>
@@ -472,20 +401,14 @@ export default function Home() {
                 <span className="text-xs sm:text-sm font-medium text-white">Regularly Updated</span>
               </div>
             </div>
-          </MotionDiv>
+          </div>
         </div>
       </section>
 
       {/* Lease Agreement Section */}
       <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 bg-gradient-to-br from-gray-50 to-white">
         <div className="max-w-4xl mx-auto">
-          <MotionDiv 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="text-center mb-12 sm:mb-16 lg:mb-20"
-          >
+          <div className="text-center mb-12 sm:mb-16 lg:mb-20">
             <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-orange-400 to-orange-500 rounded-2xl mb-6 sm:mb-8 shadow-lg">
               <FileText className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
             </div>
@@ -494,15 +417,9 @@ export default function Home() {
             <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-2">
               Clear, transparent terms for our owner-operator partnerships
             </p>
-          </MotionDiv>
+          </div>
           
-          <MotionDiv 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="grid sm:grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8"
-          >
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             <Card className="border-0 shadow-lg bg-white">
               <CardHeader className="pb-4">
                 <CardTitle className="text-xl sm:text-2xl font-bold text-gray-900">Compensation</CardTitle>
@@ -554,15 +471,9 @@ export default function Home() {
                 </div>
               </CardContent>
             </Card>
-          </MotionDiv>
+          </div>
 
-          <MotionDiv 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="mt-12 sm:mt-16 text-center"
-          >
+          <div className="mt-12 sm:mt-16 text-center">
             <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
               <CardContent className="p-6 sm:p-8">
                 <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Independent Contractor Status</h3>
@@ -573,20 +484,14 @@ export default function Home() {
                 </p>
               </CardContent>
             </Card>
-          </MotionDiv>
+          </div>
         </div>
       </section>
 
       {/* Contact Form Section */}
       <section id="contact" className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 bg-gradient-to-br from-gray-900 to-gray-800">
         <div className="max-w-4xl mx-auto">
-          <MotionDiv 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="text-center mb-12 sm:mb-16 lg:mb-20"
-          >
+          <div className="text-center mb-12 sm:mb-16 lg:mb-20">
             <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-orange-400 to-orange-500 rounded-2xl mb-6 sm:mb-8 shadow-lg">
               <Mail className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
             </div>
@@ -595,14 +500,8 @@ export default function Home() {
             <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed px-2">
               Ready to partner with Tiger Hill Transport LLC? Contact us to learn more about our owner-operator opportunities.
             </p>
-          </MotionDiv>
-                    <MotionDiv 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="grid sm:grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12"
-          >
+          </div>
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12">
             <div>
               <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">Company Information</h3>
               <div className="space-y-4 sm:space-y-6">
@@ -689,7 +588,7 @@ export default function Home() {
                 </form>
               </CardContent>
             </Card>
-          </MotionDiv>
+          </div>
         </div>
       </section>
 
