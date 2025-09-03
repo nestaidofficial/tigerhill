@@ -201,310 +201,68 @@
   }
 }
 
+/* iOS Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+  /* iOS Safari specific styles */
+  input, textarea {
+    -webkit-appearance: none;
+    border-radius: 0.5rem;
+  }
+  
+  /* Fix iOS Safari viewport issues */
+  #contact {
+    min-height: -webkit-fill-available;
+  }
+}
+
 /* Mobile Keyboard Handling */
-@layer utilities {
-  /* Mobile-specific styles for better keyboard handling */
-  @media (max-width: 768px) {
-    /* Ensure form section has proper spacing when keyboard is active */
-    #contact {
-      padding-bottom: 120px; /* Extra padding to account for keyboard */
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-    }
-    
-    /* Make form more compact on mobile */
-    .mobile-form-container {
-      padding: 1rem;
-      margin-bottom: 2rem;
-    }
-    
-    /* Ensure form inputs are properly sized for mobile */
-    .mobile-form-container input,
-    .mobile-form-container textarea {
-      font-size: 16px;
-      padding: 0.75rem;
-      margin-bottom: 1rem;
-      border-radius: 0.5rem;
-      border: 1px solid #d1d5db;
-      width: 100%;
-      box-sizing: border-box;
-    }
-    
-    /* Improve button sizing on mobile */
-    .mobile-form-container button {
-      width: 100%;
-      padding: 0.875rem;
-      font-size: 1rem;
-      font-weight: 600;
-      border-radius: 0.5rem;
-      margin-top: 1rem;
-    }
-    
-    /* Better spacing for mobile form sections */
-    .mobile-form-section {
-      margin-bottom: 2rem;
-    }
-    
-    /* Ensure "Partner With Us" section is visible above keyboard */
-    .partner-section {
-      position: relative;
-      z-index: 10;
-      background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
-      padding: 2rem 1rem;
-      margin-bottom: 1rem;
-      border-radius: 0.75rem;
-    }
-    
-    /* Mobile-optimized form card */
-    .mobile-form-card {
-      background: white;
-      border-radius: 0.75rem;
-      padding: 1.5rem;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-      margin-bottom: 2rem;
-    }
-    
-    /* Ensure form description is visible */
-    .form-description {
-      margin-bottom: 1.5rem;
-      color: #6b7280;
-      font-size: 0.875rem;
-      line-height: 1.5;
-    }
-    
-    /* Prevent keyboard from covering form content */
-    .mobile-form-container form {
-      position: relative;
-      z-index: 5;
-    }
-    
-    /* Ensure inputs are properly visible when keyboard is active */
-    .mobile-form-container input:focus,
-    .mobile-form-container textarea:focus {
-      position: relative;
-      z-index: 15;
-      background: white;
-      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-    }
-    
-    /* Better mobile input styling */
-    .mobile-form-container input,
-    .mobile-form-container textarea {
-      -webkit-appearance: none;
-      appearance: none;
-      border: 1px solid #d1d5db;
-      border-radius: 0.5rem;
-      padding: 0.75rem;
-      font-size: 16px;
-      line-height: 1.5;
-      transition: all 0.2s ease;
-    }
-    
-    /* Mobile input focus states */
-    .mobile-form-container input:focus,
-    .mobile-form-container textarea:focus {
-      outline: none;
-      border-color: #1f2937;
-      box-shadow: 0 0 0 3px rgba(31, 41, 55, 0.1);
-      transform: translateY(-1px);
-    }
-    
-    /* Mobile button improvements */
-    .mobile-form-container button {
-      -webkit-appearance: none;
-      appearance: none;
-      border: none;
-      border-radius: 0.5rem;
-      background: #1f2937;
-      color: white;
-      font-weight: 600;
-      padding: 0.875rem;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    
-    .mobile-form-container button:hover {
-      background: #111827;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    }
-    
-    .mobile-form-container button:active {
-      transform: translateY(0);
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
+@media (max-width: 768px) {
+  /* Ensure form section has proper spacing when keyboard is active */
+  #contact {
+    padding-bottom: 120px; /* Extra padding to account for keyboard */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
   }
   
-  /* Extra small mobile devices */
-  @media (max-width: 480px) {
-    #contact {
-      padding-bottom: 100px;
-      padding-top: 2rem;
-    }
-    
-    .mobile-form-container {
-      padding: 0.75rem;
-    }
-    
-    .partner-section {
-      padding: 1.5rem 0.75rem;
-    }
-    
-    .mobile-form-card {
-      padding: 1rem;
-    }
-    
-    /* Compact form on very small screens */
-    .mobile-form-container input,
-    .mobile-form-container textarea {
-      padding: 0.625rem;
-      margin-bottom: 0.75rem;
-    }
-    
-    .mobile-form-container button {
-      padding: 0.75rem;
-      font-size: 0.875rem;
-    }
+  /* Remove extra blank space below Apply to Partner */
+  #contact .text-center {
+    margin-bottom: 2rem !important;
   }
   
-  /* Landscape mobile orientation */
-  @media (max-width: 768px) and (orientation: landscape) {
-    #contact {
-      padding-bottom: 80px;
-    }
-    
-    .mobile-form-container {
-      max-height: 70vh;
-      overflow-y: auto;
-    }
-    
-    /* Landscape form adjustments */
-    .partner-section {
-      padding: 1rem 0.75rem;
-      margin-bottom: 0.5rem;
-    }
-    
-    .mobile-form-card {
-      padding: 1rem;
-      margin-bottom: 1rem;
-    }
+  /* Ensure "Partner With Us" section is visible above keyboard */
+  .partner-section {
+    position: relative;
+    z-index: 10;
+    background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+    padding: 2rem 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.75rem;
+  }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+  #contact {
+    padding-bottom: 100px;
+    padding-top: 2rem;
   }
   
-  /* Prevent keyboard from covering important content */
-  @media (max-height: 600px) {
-    #contact {
-      padding-bottom: 60px;
-    }
-    
-    .partner-section {
-      margin-bottom: 0.5rem;
-      padding: 1rem 0.75rem;
-    }
-    
-    .mobile-form-card {
-      margin-bottom: 1rem;
-    }
-    
-    /* Compact form when height is limited */
-    .mobile-form-container {
-      padding: 0.5rem;
-    }
-    
-    .mobile-form-container input,
-    .mobile-form-container textarea {
-      padding: 0.5rem;
-      margin-bottom: 0.5rem;
-    }
+  /* Remove extra blank space on small screens */
+  #contact .text-center {
+    margin-bottom: 1.5rem !important;
+  }
+}
+
+/* Landscape mobile orientation */
+@media (max-width: 768px) and (orientation: landscape) {
+  #contact {
+    padding-bottom: 80px;
   }
   
-  /* iOS Safari specific fixes */
-  @supports (-webkit-touch-callout: none) {
-    /* iOS Safari specific styles */
-    input, textarea {
-      -webkit-appearance: none;
-      border-radius: 0.5rem;
-    }
-    
-    /* Fix iOS Safari viewport issues */
-    #contact {
-      min-height: -webkit-fill-available;
-    }
-    
-    /* iOS Safari input improvements */
-    .mobile-form-container input,
-    .mobile-form-container textarea {
-      -webkit-appearance: none;
-      appearance: none;
-      border-radius: 0.5rem;
-      -webkit-border-radius: 0.5rem;
-    }
-    
-    /* iOS Safari button improvements */
-    .mobile-form-container button {
-      -webkit-appearance: none;
-      appearance: none;
-      border-radius: 0.5rem;
-      -webkit-border-radius: 0.5rem;
-    }
-  }
-  
-  /* Android Chrome specific fixes */
-  @media screen and (-webkit-min-device-pixel-ratio: 0) {
-    input, textarea {
-      -webkit-appearance: none;
-      border-radius: 0.5rem;
-    }
-    
-    /* Android Chrome input improvements */
-    .mobile-form-container input,
-    .mobile-form-container textarea {
-      -webkit-appearance: none;
-      appearance: none;
-      border-radius: 0.5rem;
-    }
-    
-    /* Android Chrome button improvements */
-    .mobile-form-container button {
-      -webkit-appearance: none;
-      appearance: none;
-      border-radius: 0.5rem;
-    }
-  }
-  
-  /* High DPI mobile devices */
-  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    .mobile-form-container input,
-    .mobile-form-container textarea,
-    .mobile-form-container button {
-      border-width: 0.5px;
-    }
-  }
-  
-  /* Dark mode support for mobile */
-  @media (prefers-color-scheme: dark) {
-    .mobile-form-container input,
-    .mobile-form-container textarea {
-      background: #374151;
-      border-color: #4b5563;
-      color: #f9fafb;
-    }
-    
-    .mobile-form-container input:focus,
-    .mobile-form-container textarea:focus {
-      border-color: #60a5fa;
-      box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
-    }
-    
-    .mobile-form-container button {
-      background: #3b82f6;
-    }
-    
-    .mobile-form-container button:hover {
-      background: #2563eb;
-    }
+  /* Remove extra blank space in landscape */
+  #contact .text-center {
+    margin-bottom: 1rem !important;
   }
 }

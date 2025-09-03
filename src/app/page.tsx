@@ -19,6 +19,7 @@ export default function Home() {
     email: "",
     message: ""
   });
+  const [showMobileForm, setShowMobileForm] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
@@ -135,6 +136,10 @@ export default function Home() {
       if (response.ok) {
         setSubmitMessage(data.message);
         setFormData({ name: "", email: "", message: "" });
+        // Close mobile form on successful submission
+        if (window.innerWidth <= 768) {
+          setShowMobileForm(false);
+        }
       } else {
         setSubmitMessage(data.error || 'Something went wrong. Please try again.');
       }
@@ -144,6 +149,22 @@ export default function Home() {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const openMobileForm = () => {
+    setShowMobileForm(true);
+    // Prevent body scroll when form is open
+    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.width = '100%';
+  };
+
+  const closeMobileForm = () => {
+    setShowMobileForm(false);
+    // Restore body scroll
+    document.body.style.overflow = 'unset';
+    document.body.style.position = 'unset';
+    document.body.style.width = 'unset';
   };
 
   const credentials = [
@@ -209,12 +230,18 @@ export default function Home() {
               size="lg" 
               className="bg-orange-400 hover:bg-orange-500 text-white px-8 sm:px-12 py-3 sm:py-4 text-lg sm:text-xl font-bold rounded-full shadow-2xl hover:shadow-orange-500/25 transition-all duration-300 transform hover:scale-105 group"
               onClick={() => {
-                const contactElement = document.getElementById('contact');
-                if (contactElement) {
-                  contactElement.scrollIntoView({ 
-                    behavior: 'smooth',
-                    block: 'start'
-                  });
+                if (window.innerWidth <= 768) {
+                  // On mobile, open the full-screen form modal
+                  openMobileForm();
+                } else {
+                  // On desktop, scroll to contact section
+                  const contactElement = document.getElementById('contact');
+                  if (contactElement) {
+                    contactElement.scrollIntoView({ 
+                      behavior: 'smooth',
+                      block: 'start'
+                    });
+                  }
                 }
               }}
             >
@@ -232,6 +259,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+
 
       {/* About Section */}
       <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 bg-gradient-to-br from-gray-50 to-white">
@@ -545,8 +574,7 @@ export default function Home() {
       {/* Contact Form Section */}
       <section id="contact" className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 bg-gradient-to-br from-gray-900 to-gray-800">
         <div className="max-w-4xl mx-auto">
-          {/* Partner With Us Header - Mobile Optimized */}
-          <div className="partner-section text-center mb-8 sm:mb-12 lg:mb-16">
+          <div className="text-center mb-12 sm:mb-16 lg:mb-20">
             <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-orange-400 to-orange-500 rounded-2xl mb-6 sm:mb-8 shadow-lg">
               <Mail className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
             </div>
@@ -556,10 +584,8 @@ export default function Home() {
               Ready to partner with Tiger Hill Transport LLC? Contact us to learn more about our owner-operator opportunities.
             </p>
           </div>
-          
           <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12">
-            {/* Company Information - Mobile Optimized */}
-            <div className="mobile-form-section">
+            <div>
               <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">Company Information</h3>
               <div className="space-y-4 sm:space-y-6">
                 <div className="flex items-center">
@@ -582,60 +608,52 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            
-            {/* Application Form - Mobile Optimized */}
-            <Card className="mobile-form-card border border-gray-200 shadow-lg bg-white">
+            {/* Desktop Form */}
+            <Card className="hidden md:block border border-gray-200 shadow-lg bg-white">
               <CardHeader className="pb-4 sm:pb-6">
                 <CardTitle className="text-xl sm:text-2xl font-bold text-gray-900">Apply to Partner</CardTitle>
-                <CardDescription className="form-description text-gray-600 text-sm sm:text-base">
+                <CardDescription className="text-gray-600 text-sm sm:text-base">
                   Fill out the form below and we&apos;ll get back to you within 24 hours.
                 </CardDescription>
               </CardHeader>
-              <CardContent className="mobile-form-container">
-                <form key="contact-form" onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+              <CardContent>
+                <form key="contact-form-desktop" onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
                   <div>
-                    <Label htmlFor="name" className="text-gray-900 font-semibold mb-2 sm:mb-3 block text-sm sm:text-base">Name</Label>
+                    <Label htmlFor="name-desktop" className="text-gray-900 font-semibold mb-2 sm:mb-3 block text-sm sm:text-base">Name</Label>
                     <Input
-                      id="name"
+                      id="name-desktop"
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
                       placeholder="Your full name"
                       required
-                      autoComplete="name"
-                      enterKeyHint="next"
                       className="rounded-lg border-gray-300 focus:border-gray-900 focus:ring-gray-900/10 px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base transition-all duration-200 hover:border-gray-400 bg-gray-50/50"
                     />
                   </div>
 
                   <div>
-                    <Label htmlFor="email" className="text-gray-900 font-semibold mb-2 sm:mb-3 block text-sm sm:text-base">Email</Label>
+                    <Label htmlFor="email-desktop" className="text-gray-900 font-semibold mb-2 sm:mb-3 block text-sm sm:text-base">Email</Label>
                     <Input
-                      id="email"
+                      id="email-desktop"
                       name="email"
                       type="email"
                       value={formData.email}
                       onChange={handleInputChange}
                       placeholder="your.email@example.com"
                       required
-                      autoComplete="email"
-                      enterKeyHint="next"
-                      inputMode="email"
                       className="rounded-lg border-gray-300 focus:border-gray-900 focus:ring-gray-900/10 px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base transition-all duration-200 hover:border-gray-400 bg-gray-50/50"
                     />
                   </div>
                   <div>
-                    <Label htmlFor="message" className="text-gray-900 font-semibold mb-2 sm:mb-3 block text-sm sm:text-base">Message</Label>
+                    <Label htmlFor="message-desktop" className="text-gray-900 font-semibold mb-2 sm:mb-3 block text-sm sm:text-base">Message</Label>
                     <Textarea
-                      id="message"
+                      id="message-desktop"
                       name="message"
                       value={formData.message}
                       onChange={handleInputChange}
                       placeholder="Tell us about your trucking experience and equipment..."
                       rows={4}
                       required
-                      autoComplete="off"
-                      enterKeyHint="done"
                       className="rounded-lg border-gray-300 focus:border-gray-900 focus:ring-gray-900/10 px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base transition-all duration-200 hover:border-gray-400 bg-gray-50/50 resize-none"
                     />
                   </div>
@@ -654,9 +672,258 @@ export default function Home() {
                 </form>
               </CardContent>
             </Card>
+
+
           </div>
         </div>
       </section>
+
+      {/* Full-Screen Mobile Form Modal */}
+      {showMobileForm && (
+        <div 
+          className="md:hidden"
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            width: '100vw',
+            height: '100dvh',
+            zIndex: 9999,
+            background: '#f8f9fa',
+            transform: 'translateZ(0)',
+          }}
+        >
+          {/* Backdrop */}
+          <div 
+            onClick={closeMobileForm}
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: 'transparent',
+              zIndex: 9998,
+            }}
+          />
+          
+          {/* Modal Content */}
+          <div className="relative h-full w-full flex flex-col">
+            {/* Header with X button */}
+            <div 
+              style={{
+                position: 'sticky',
+                top: 0,
+                background: '#f8f9fa',
+                borderBottom: '1px solid #e9ecef',
+                padding: '1.5rem 1.25rem 1rem',
+                zIndex: 10,
+                transform: 'translateZ(0)',
+              }}
+            >
+              <h2 className="text-center w-full" style={{ fontSize: '1.75rem', fontWeight: 600, color: '#212529', marginBottom: '1.5rem' }}>
+                Apply to Partner
+              </h2>
+              <button
+                onClick={closeMobileForm}
+                aria-label="Close form"
+                style={{
+                  width: '2.5rem',
+                  height: '2.5rem',
+                  borderRadius: '50%',
+                  background: '#6c757d',
+                  border: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
+                  transform: 'translateZ(0)',
+                  position: 'absolute',
+                  top: '1.25rem',
+                  right: '1.25rem',
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.background = '#495057'}
+                onMouseLeave={(e) => e.currentTarget.style.background = '#6c757d'}
+              >
+                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            
+            {/* Form Content */}
+            <div 
+              style={{
+                flex: 1,
+                overflowY: 'auto',
+                padding: '0 1.25rem 1.25rem',
+                background: '#f8f9fa',
+                transform: 'translateZ(0)',
+              }}
+            >
+              <div className="max-w-md mx-auto">
+                <p className="text-center" style={{ color: '#6c757d', fontSize: '0.875rem', lineHeight: 1.5, marginBottom: '2rem' }}>
+                  Fill out the form below and we&apos;ll get back to you within 24 hours.
+                </p>
+                
+                <form key="contact-form-mobile" onSubmit={handleSubmit} className="space-y-4">
+                  <div>
+                    <Label htmlFor="name-mobile" style={{ display: 'block', fontWeight: 500, color: '#495057', marginBottom: '0.5rem', fontSize: '0.875rem' }}>
+                      Name
+                    </Label>
+                    <Input
+                      id="name-mobile"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      placeholder="Your full name"
+                      required
+                      autoComplete="name"
+                      enterKeyHint="next"
+                      style={{
+                        width: '100%',
+                        padding: '1rem',
+                        border: '1px solid #dee2e6',
+                        borderRadius: '0.75rem',
+                        fontSize: '1rem',
+                        lineHeight: 1.5,
+                        transition: 'all 0.2s ease',
+                        background: 'white',
+                        color: '#212529',
+                        marginBottom: '1rem',
+                        boxSizing: 'border-box',
+                      }}
+                      onFocus={(e) => {
+                        e.target.style.outline = 'none';
+                        e.target.style.borderColor = '#007bff';
+                        e.target.style.boxShadow = '0 0 0 3px rgba(0, 123, 255, 0.1)';
+                      }}
+                      onBlur={(e) => {
+                        e.target.style.borderColor = '#dee2e6';
+                        e.target.style.boxShadow = 'none';
+                      }}
+                    />
+                  </div>
+
+                  <div>
+                    <Label htmlFor="email-mobile" style={{ display: 'block', fontWeight: 500, color: '#495057', marginBottom: '0.5rem', fontSize: '0.875rem' }}>
+                      Email
+                    </Label>
+                    <Input
+                      id="email-mobile"
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      placeholder="your.email@example.com"
+                      required
+                      autoComplete="email"
+                      enterKeyHint="next"
+                      inputMode="email"
+                      style={{
+                        width: '100%',
+                        padding: '1rem',
+                        border: '1px solid #dee2e6',
+                        borderRadius: '0.75rem',
+                        fontSize: '1rem',
+                        lineHeight: 1.5,
+                        transition: 'all 0.2s ease',
+                        background: 'white',
+                        color: '#212529',
+                        marginBottom: '1rem',
+                        boxSizing: 'border-box',
+                      }}
+                      onFocus={(e) => {
+                        e.target.style.outline = 'none';
+                        e.target.style.borderColor = '#007bff';
+                        e.target.style.boxShadow = '0 0 0 3px rgba(0, 123, 255, 0.1)';
+                      }}
+                      onBlur={(e) => {
+                        e.target.style.borderColor = '#dee2e6';
+                        e.target.style.boxShadow = 'none';
+                      }}
+                    />
+                  </div>
+                  
+                  <div>
+                    <Label htmlFor="message-mobile" style={{ display: 'block', fontWeight: 500, color: '#495057', marginBottom: '0.5rem', fontSize: '0.875rem' }}>
+                      Message
+                    </Label>
+                    <Textarea
+                      id="message-mobile"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      placeholder="Tell us about your trucking experience and equipment..."
+                      rows={4}
+                      required
+                      autoComplete="off"
+                      enterKeyHint="done"
+                      style={{
+                        width: '100%',
+                        padding: '1rem',
+                        border: '1px solid #dee2e6',
+                        borderRadius: '0.75rem',
+                        fontSize: '1rem',
+                        lineHeight: 1.5,
+                        transition: 'all 0.2s ease',
+                        background: 'white',
+                        color: '#212529',
+                        marginBottom: '1rem',
+                        boxSizing: 'border-box',
+                        resize: 'none',
+                      }}
+                      onFocus={(e) => {
+                        e.target.style.outline = 'none';
+                        e.target.style.borderColor = '#007bff';
+                        e.target.style.boxShadow = '0 0 0 3px rgba(0, 123, 255, 0.1)';
+                      }}
+                      onBlur={(e) => {
+                        e.target.style.borderColor = '#dee2e6';
+                        e.target.style.boxShadow = 'none';
+                      }}
+                    />
+                  </div>
+                  
+                  <Button 
+                    type="submit" 
+                    className="w-full"
+                    disabled={isSubmitting}
+                    style={{
+                      width: '100%',
+                      padding: '1rem',
+                      background: '#6c757d',
+                      color: 'white',
+                      border: 'none',
+                      borderRadius: '0.75rem',
+                      fontSize: '1rem',
+                      fontWeight: 500,
+                      cursor: 'pointer',
+                      transition: 'all 0.2s ease',
+                      boxShadow: 'none',
+                      transform: 'translateZ(0)',
+                      marginTop: '1rem',
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.background = '#495057'}
+                    onMouseLeave={(e) => e.currentTarget.style.background = '#6c757d'}
+                  >
+                    {isSubmitting ? "Sending..." : "Apply Now"}
+                  </Button>
+                  
+                  {submitMessage && (
+                    <p className={`text-sm mt-3 text-center ${submitMessage.includes('Thank you') ? 'text-green-600' : 'text-red-600'}`}>
+                      {submitMessage}
+                    </p>
+                  )}
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-8 sm:py-12 px-4">
