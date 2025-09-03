@@ -38,6 +38,60 @@ export default function Home() {
       }
     };
     
+    // Mobile keyboard handling
+    const handleResize = () => {
+      const isMobile = window.innerWidth <= 768;
+      const isLandscape = window.innerHeight < window.innerWidth;
+      
+      if (isMobile) {
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+          // Adjust padding based on orientation and keyboard state
+          if (isLandscape) {
+            contactSection.style.paddingBottom = '80px';
+          } else {
+            contactSection.style.paddingBottom = '120px';
+          }
+        }
+      }
+    };
+    
+    // Handle visual viewport changes (keyboard appearance)
+    if ('visualViewport' in window && window.visualViewport) {
+      const visualViewport = window.visualViewport;
+      const handleViewportChange = () => {
+        const isMobile = window.innerWidth <= 768;
+        if (isMobile && visualViewport) {
+          const contactSection = document.getElementById('contact');
+          if (contactSection) {
+            const keyboardHeight = window.innerHeight - visualViewport.height;
+            if (keyboardHeight > 150) {
+              // Keyboard is visible, adjust layout
+              contactSection.style.paddingBottom = `${Math.max(120, keyboardHeight + 20)}px`;
+            } else {
+              // Keyboard is hidden, restore normal padding
+              contactSection.style.paddingBottom = '120px';
+            }
+          }
+        }
+      };
+      
+      visualViewport.addEventListener('resize', handleViewportChange);
+      window.addEventListener('resize', handleResize);
+      
+      return () => {
+        visualViewport.removeEventListener('resize', handleViewportChange);
+        window.removeEventListener('resize', handleResize);
+      };
+    } else {
+      // Fallback for browsers without visualViewport support
+      window.addEventListener('resize', handleResize);
+      
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }
+    
     document.addEventListener('visibilitychange', handleVisibilityChange);
     
     return () => {
@@ -491,7 +545,8 @@ export default function Home() {
       {/* Contact Form Section */}
       <section id="contact" className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 bg-gradient-to-br from-gray-900 to-gray-800">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+          {/* Partner With Us Header - Mobile Optimized */}
+          <div className="partner-section text-center mb-8 sm:mb-12 lg:mb-16">
             <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-orange-400 to-orange-500 rounded-2xl mb-6 sm:mb-8 shadow-lg">
               <Mail className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
             </div>
@@ -501,8 +556,10 @@ export default function Home() {
               Ready to partner with Tiger Hill Transport LLC? Contact us to learn more about our owner-operator opportunities.
             </p>
           </div>
+          
           <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12">
-            <div>
+            {/* Company Information - Mobile Optimized */}
+            <div className="mobile-form-section">
               <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">Company Information</h3>
               <div className="space-y-4 sm:space-y-6">
                 <div className="flex items-center">
@@ -525,14 +582,16 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <Card className="border border-gray-200 shadow-lg bg-white">
+            
+            {/* Application Form - Mobile Optimized */}
+            <Card className="mobile-form-card border border-gray-200 shadow-lg bg-white">
               <CardHeader className="pb-4 sm:pb-6">
                 <CardTitle className="text-xl sm:text-2xl font-bold text-gray-900">Apply to Partner</CardTitle>
-                <CardDescription className="text-gray-600 text-sm sm:text-base">
+                <CardDescription className="form-description text-gray-600 text-sm sm:text-base">
                   Fill out the form below and we&apos;ll get back to you within 24 hours.
                 </CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="mobile-form-container">
                 <form key="contact-form" onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
                   <div>
                     <Label htmlFor="name" className="text-gray-900 font-semibold mb-2 sm:mb-3 block text-sm sm:text-base">Name</Label>
@@ -543,6 +602,8 @@ export default function Home() {
                       onChange={handleInputChange}
                       placeholder="Your full name"
                       required
+                      autoComplete="name"
+                      enterKeyHint="next"
                       className="rounded-lg border-gray-300 focus:border-gray-900 focus:ring-gray-900/10 px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base transition-all duration-200 hover:border-gray-400 bg-gray-50/50"
                     />
                   </div>
@@ -557,6 +618,9 @@ export default function Home() {
                       onChange={handleInputChange}
                       placeholder="your.email@example.com"
                       required
+                      autoComplete="email"
+                      enterKeyHint="next"
+                      inputMode="email"
                       className="rounded-lg border-gray-300 focus:border-gray-900 focus:ring-gray-900/10 px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base transition-all duration-200 hover:border-gray-400 bg-gray-50/50"
                     />
                   </div>
@@ -570,6 +634,8 @@ export default function Home() {
                       placeholder="Tell us about your trucking experience and equipment..."
                       rows={4}
                       required
+                      autoComplete="off"
+                      enterKeyHint="done"
                       className="rounded-lg border-gray-300 focus:border-gray-900 focus:ring-gray-900/10 px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base transition-all duration-200 hover:border-gray-400 bg-gray-50/50 resize-none"
                     />
                   </div>
