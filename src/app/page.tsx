@@ -263,73 +263,160 @@ export default function Home() {
 
 
 
-      {/* About Section */}
+      
+
+
+
+      {/* Lease Agreement Section */}
       <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 bg-gradient-to-br from-gray-50 to-white">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+            <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-orange-400 to-orange-500 rounded-2xl mb-6 sm:mb-8 shadow-lg">
+              <FileText className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
+            </div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 tracking-tight">Partnership Terms</h2>
+            <Separator className="w-16 sm:w-24 mx-auto bg-orange-400 mb-6 sm:mb-8" />
+            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-2">
+              Clear, transparent terms for our owner-operator partnerships
+            </p>
+          </div>
+          
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+            <Card className="border-0 shadow-lg bg-white">
+              <CardHeader className="pb-4">
+                <CardTitle className="text-xl sm:text-2xl font-bold text-gray-900">Compensation</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3 sm:space-y-4">
+                <div className="flex items-center">
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 bg-gray-900/10 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                    <span className="text-gray-900 font-bold text-sm sm:text-base">8%</span>
+                  </div>
+                  <p className="text-gray-600 text-sm sm:text-base">Carrier fee - only 8% of gross revenue</p>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 bg-blue-500/20 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                    <Clock className="w-3 h-3 sm:w-4 sm:h-4 text-blue-500" />
+                  </div>
+                  <p className="text-gray-600 text-sm sm:text-base">Weekly settlements with detailed sheets</p>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 bg-gray-600/10 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                    <Shield className="w-3 h-3 sm:w-4 sm:h-4 text-gray-600" />
+                  </div>
+                  <p className="text-gray-600 text-sm sm:text-base">Direct payment collection from brokers</p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-lg bg-white">
+              <CardHeader className="pb-4">
+                <CardTitle className="text-xl sm:text-2xl font-bold text-gray-900">Responsibilities</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3 sm:space-y-4">
+                <div className="flex items-center">
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 bg-gray-900/10 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                    <Truck className="w-3 h-3 sm:w-4 sm:h-4 text-gray-900" />
+                  </div>
+                  <p className="text-gray-600 text-sm sm:text-base">Provide your own truck and equipment</p>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 bg-blue-500/20 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                    <Zap className="w-3 h-3 sm:w-4 sm:h-4 text-blue-500" />
+                  </div>
+                  <p className="text-gray-600 text-sm sm:text-base">Fuel, maintenance, and operating costs</p>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 bg-gray-600/10 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                    <User className="w-3 h-3 sm:w-4 sm:h-4 text-gray-600" />
+                  </div>
+                  <p className="text-gray-600 text-sm sm:text-base">Maintain DOT compliance and safety standards</p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="mt-12 sm:mt-16 text-center">
+            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+              <CardContent className="p-6 sm:p-8">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Independent Contractor Status</h3>
+                <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
+                  You operate as an independent contractor under our authority. You&apos;re responsible for your own 
+                  taxes, workers&apos; compensation, and benefits. We provide the freight opportunities and handle 
+                  the administrative burden of broker relationships and compliance.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Required Documents Section */}
+      <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 bg-gradient-to-br from-gray-900 to-gray-800">
         <div className="max-w-6xl mx-auto">
           <MotionDiv className="text-center mb-12 sm:mb-16 lg:mb-20">
             <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-orange-400 to-orange-500 rounded-2xl mb-6 sm:mb-8 shadow-lg">
-              <Award className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
+              <Shield className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 tracking-tight">About Tiger Hill Transport LLC</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 tracking-tight">Required Documents</h2>
             <Separator className="w-16 sm:w-24 mx-auto bg-orange-400 mb-6 sm:mb-8" />
-            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-2">
-              Connecting owner-operators with quality freight opportunities across the United States
+            <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed px-2">
+              Owner-operators must provide current documentation to partner with Tiger Hill Transport LLC
             </p>
           </MotionDiv>
           
-          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16 lg:mb-20">
-            {/* Experience Card */}
-            <MotionCard>
-              <Card className="border-0 shadow-xl hover:shadow-2xl transition-all duration-300 bg-white rounded-2xl overflow-hidden group h-full">
-                <CardHeader className="text-center pb-4 sm:pb-6 pt-6 sm:pt-8">
-                  <div className="mx-auto w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-4 sm:mb-6 shadow-lg group-hover:shadow-blue-500/25 transition-shadow">
-                    <Clock className="w-10 h-10 sm:w-12 sm:h-12 text-white" />
-                  </div>
-                  <CardTitle className="text-xl sm:text-2xl font-bold text-gray-900">Established Carrier</CardTitle>
-                </CardHeader>
-                <CardContent className="text-center px-6 sm:px-8 pb-6 sm:pb-8">
-                  <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
-                    Licensed carrier with MC and DOT authority, providing owner-operators with quality freight opportunities
-                  </p>
-                </CardContent>
-              </Card>
-            </MotionCard>
-
-            {/* Coverage Card */}
-            <MotionCard>
-              <Card className="border-0 shadow-xl hover:shadow-2xl transition-all duration-300 bg-white rounded-2xl overflow-hidden group h-full">
-                <CardHeader className="text-center pb-4 sm:pb-6 pt-6 sm:pt-8">
-                  <div className="mx-auto w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mb-4 sm:mb-6 shadow-lg group-hover:shadow-green-500/25 transition-shadow">
-                    <MapPin className="w-10 h-10 sm:w-12 sm:h-12 text-white" />
-                  </div>
-                  <CardTitle className="text-xl sm:text-2xl font-bold text-gray-900">Nationwide Freight</CardTitle>
-                </CardHeader>
-                <CardContent className="text-center px-6 sm:px-8 pb-6 sm:pb-8">
-                  <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
-                    Access to freight lanes across all 48 continental states with established broker relationships
-                  </p>
-                </CardContent>
-              </Card>
-            </MotionCard>
-
-            {/* Quality Card */}
-            <MotionCard>
-              <Card className="border-0 shadow-xl hover:shadow-2xl transition-all duration-300 bg-white rounded-2xl overflow-hidden group h-full">
-                <CardHeader className="text-center pb-4 sm:pb-6 pt-6 sm:pt-8">
-                  <div className="mx-auto w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mb-4 sm:mb-6 shadow-lg group-hover:shadow-purple-500/25 transition-shadow">
-                    <Star className="w-10 h-10 sm:w-12 sm:h-12 text-white" />
-                  </div>
-                  <CardTitle className="text-xl sm:text-2xl font-bold text-gray-900">Owner-Operator Support</CardTitle>
-                </CardHeader>
-                <CardContent className="text-center px-6 sm:px-8 pb-6 sm:pb-8">
-                  <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
-                    Dedicated support for owner-operators with competitive rates and reliable settlements
-                  </p>
-                </CardContent>
-              </Card>
-            </MotionCard>
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {credentials.map((credential, index) => (
+              <MotionCard
+                key={index}
+                className="group"
+              >
+                <Card className="relative overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-300 bg-white rounded-2xl h-full">
+                  <div className="absolute inset-0 bg-gradient-to-br from-orange-400/5 to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <CardHeader className="text-center relative z-10 pb-4 sm:pb-6 pt-6 sm:pt-8">
+                    <div className="mx-auto w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-orange-400 to-orange-500 rounded-2xl flex items-center justify-center mb-4 sm:mb-6 shadow-lg group-hover:shadow-orange-500/25 transition-shadow">
+                      <credential.icon className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
+                    </div>
+                    <CardTitle className="text-lg sm:text-xl font-bold text-gray-900">
+                      {credential.name}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="text-center relative z-10 px-6 sm:px-8 pb-6 sm:pb-8">
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                      {credential.description}
+                    </p>
+                  </CardContent>
+                  
+                  {/* Gradient border effect */}
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-orange-400 to-orange-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300 -z-10"></div>
+                </Card>
+              </MotionCard>
+            ))}
           </div>
+          
+          <div className="mt-12 sm:mt-16 lg:mt-20 text-center">
+            <div className="inline-flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6 lg:space-x-8 bg-white/10 backdrop-blur-sm rounded-2xl px-6 sm:px-8 py-4 sm:py-6 shadow-xl border border-white/20">
+              <div className="flex items-center space-x-3">
+                <div className="w-3 h-3 bg-orange-400 rounded-full animate-pulse"></div>
+                <span className="text-xs sm:text-sm font-medium text-white">All Certifications Current</span>
+              </div>
+              <div className="hidden sm:block w-px h-6 bg-white/30"></div>
+              <div className="flex items-center space-x-3">
+                <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                <span className="text-xs sm:text-sm font-medium text-white">Fully Compliant</span>
+              </div>
+              <div className="hidden sm:block w-px h-6 bg-white/30"></div>
+              <div className="flex items-center space-x-3">
+                <div className="w-3 h-3 bg-blue-400 rounded-full animate-pulse"></div>
+                <span className="text-xs sm:text-sm font-medium text-white">Regularly Updated</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
+            {/* Licensed Carrier Section */}
+      <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 bg-gradient-to-br from-gray-50 to-white">
+        <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
             <div>
               <div className="flex flex-col sm:flex-row items-start sm:items-center mb-6 sm:mb-8">
@@ -425,149 +512,71 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Credentials Section */}
-      <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 bg-gradient-to-br from-gray-900 to-gray-800">
+      {/* About Section */}
+      <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 bg-gradient-to-br from-gray-50 to-white">
         <div className="max-w-6xl mx-auto">
           <MotionDiv className="text-center mb-12 sm:mb-16 lg:mb-20">
             <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-orange-400 to-orange-500 rounded-2xl mb-6 sm:mb-8 shadow-lg">
-              <Shield className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
+              <Award className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 tracking-tight">Required Documents</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 tracking-tight">About Tiger Hill Transport LLC</h2>
             <Separator className="w-16 sm:w-24 mx-auto bg-orange-400 mb-6 sm:mb-8" />
-            <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed px-2">
-              Owner-operators must provide current documentation to partner with Tiger Hill Transport LLC
+            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-2">
+              Connecting owner-operators with quality freight opportunities across the United States
             </p>
           </MotionDiv>
           
-          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {credentials.map((credential, index) => (
-              <MotionCard
-                key={index}
-                className="group"
-              >
-                <Card className="relative overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-300 bg-white rounded-2xl h-full">
-                  <div className="absolute inset-0 bg-gradient-to-br from-orange-400/5 to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <CardHeader className="text-center relative z-10 pb-4 sm:pb-6 pt-6 sm:pt-8">
-                    <div className="mx-auto w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-orange-400 to-orange-500 rounded-2xl flex items-center justify-center mb-4 sm:mb-6 shadow-lg group-hover:shadow-orange-500/25 transition-shadow">
-                      <credential.icon className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
-                    </div>
-                    <CardTitle className="text-lg sm:text-xl font-bold text-gray-900">
-                      {credential.name}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="text-center relative z-10 px-6 sm:px-8 pb-6 sm:pb-8">
-                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                      {credential.description}
-                    </p>
-                  </CardContent>
-                  
-                  {/* Gradient border effect */}
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-orange-400 to-orange-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300 -z-10"></div>
-                </Card>
-              </MotionCard>
-            ))}
-          </div>
-          
-          <div className="mt-12 sm:mt-16 lg:mt-20 text-center">
-            <div className="inline-flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6 lg:space-x-8 bg-white/10 backdrop-blur-sm rounded-2xl px-6 sm:px-8 py-4 sm:py-6 shadow-xl border border-white/20">
-              <div className="flex items-center space-x-3">
-                <div className="w-3 h-3 bg-orange-400 rounded-full animate-pulse"></div>
-                <span className="text-xs sm:text-sm font-medium text-white">All Certifications Current</span>
-              </div>
-              <div className="hidden sm:block w-px h-6 bg-white/30"></div>
-              <div className="flex items-center space-x-3">
-                <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                <span className="text-xs sm:text-sm font-medium text-white">Fully Compliant</span>
-              </div>
-              <div className="hidden sm:block w-px h-6 bg-white/30"></div>
-              <div className="flex items-center space-x-3">
-                <div className="w-3 h-3 bg-blue-400 rounded-full animate-pulse"></div>
-                <span className="text-xs sm:text-sm font-medium text-white">Regularly Updated</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16 lg:mb-20">
+            {/* Experience Card */}
+            <MotionCard>
+              <Card className="border-0 shadow-xl hover:shadow-2xl transition-all duration-300 bg-white rounded-2xl overflow-hidden group h-full">
+                <CardHeader className="text-center pb-4 sm:pb-6 pt-6 sm:pt-8">
+                  <div className="mx-auto w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-4 sm:mb-6 shadow-lg group-hover:shadow-blue-500/25 transition-shadow">
+                    <Clock className="w-10 h-10 sm:w-12 sm:h-12 text-white" />
+                  </div>
+                  <CardTitle className="text-xl sm:text-2xl font-bold text-gray-900">Established Carrier</CardTitle>
+                </CardHeader>
+                <CardContent className="text-center px-6 sm:px-8 pb-6 sm:pb-8">
+                  <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
+                    Licensed carrier with MC and DOT authority, providing owner-operators with quality freight opportunities
+                  </p>
+                </CardContent>
+              </Card>
+            </MotionCard>
 
-      {/* Lease Agreement Section */}
-      <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 bg-gradient-to-br from-gray-50 to-white">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12 sm:mb-16 lg:mb-20">
-            <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-orange-400 to-orange-500 rounded-2xl mb-6 sm:mb-8 shadow-lg">
-              <FileText className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
-            </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 tracking-tight">Partnership Terms</h2>
-            <Separator className="w-16 sm:w-24 mx-auto bg-orange-400 mb-6 sm:mb-8" />
-            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-2">
-              Clear, transparent terms for our owner-operator partnerships
-            </p>
-          </div>
-          
-          <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-            <Card className="border-0 shadow-lg bg-white">
-              <CardHeader className="pb-4">
-                <CardTitle className="text-xl sm:text-2xl font-bold text-gray-900">Compensation</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3 sm:space-y-4">
-                <div className="flex items-center">
-                  <div className="w-7 h-7 sm:w-8 sm:h-8 bg-gray-900/10 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                    <span className="text-gray-900 font-bold text-sm sm:text-base">8%</span>
+            {/* Coverage Card */}
+            <MotionCard>
+              <Card className="border-0 shadow-xl hover:shadow-2xl transition-all duration-300 bg-white rounded-2xl overflow-hidden group h-full">
+                <CardHeader className="text-center pb-4 sm:pb-6 pt-6 sm:pt-8">
+                  <div className="mx-auto w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mb-4 sm:mb-6 shadow-lg group-hover:shadow-green-500/25 transition-shadow">
+                    <MapPin className="w-10 h-10 sm:w-12 sm:h-12 text-white" />
                   </div>
-                  <p className="text-gray-600 text-sm sm:text-base">Carrier fee - only 8% of gross revenue</p>
-                </div>
-                <div className="flex items-center">
-                  <div className="w-7 h-7 sm:w-8 sm:h-8 bg-blue-500/20 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                    <Clock className="w-3 h-3 sm:w-4 sm:h-4 text-blue-500" />
-                  </div>
-                  <p className="text-gray-600 text-sm sm:text-base">Weekly settlements with detailed sheets</p>
-                </div>
-                <div className="flex items-center">
-                  <div className="w-7 h-7 sm:w-8 sm:h-8 bg-gray-600/10 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                    <Shield className="w-3 h-3 sm:w-4 sm:h-4 text-gray-600" />
-                  </div>
-                  <p className="text-gray-600 text-sm sm:text-base">Direct payment collection from brokers</p>
-                </div>
-              </CardContent>
-            </Card>
+                  <CardTitle className="text-xl sm:text-2xl font-bold text-gray-900">Nationwide Freight</CardTitle>
+                </CardHeader>
+                <CardContent className="text-center px-6 sm:px-8 pb-6 sm:pb-8">
+                  <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
+                    Access to freight lanes across all 48 continental states with established broker relationships
+                  </p>
+                </CardContent>
+              </Card>
+            </MotionCard>
 
-            <Card className="border-0 shadow-lg bg-white">
-              <CardHeader className="pb-4">
-                <CardTitle className="text-xl sm:text-2xl font-bold text-gray-900">Responsibilities</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3 sm:space-y-4">
-                <div className="flex items-center">
-                  <div className="w-7 h-7 sm:w-8 sm:h-8 bg-gray-900/10 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                    <Truck className="w-3 h-3 sm:w-4 sm:h-4 text-gray-900" />
+            {/* Quality Card */}
+            <MotionCard>
+              <Card className="border-0 shadow-xl hover:shadow-2xl transition-all duration-300 bg-white rounded-2xl overflow-hidden group h-full">
+                <CardHeader className="text-center pb-4 sm:pb-6 pt-6 sm:pt-8">
+                  <div className="mx-auto w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mb-4 sm:mb-6 shadow-lg group-hover:shadow-purple-500/25 transition-shadow">
+                    <Star className="w-10 h-10 sm:w-12 sm:h-12 text-white" />
                   </div>
-                  <p className="text-gray-600 text-sm sm:text-base">Provide your own truck and equipment</p>
-                </div>
-                <div className="flex items-center">
-                  <div className="w-7 h-7 sm:w-8 sm:h-8 bg-blue-500/20 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                    <Zap className="w-3 h-3 sm:w-4 sm:h-4 text-blue-500" />
-                  </div>
-                  <p className="text-gray-600 text-sm sm:text-base">Fuel, maintenance, and operating costs</p>
-                </div>
-                <div className="flex items-center">
-                  <div className="w-7 h-7 sm:w-8 sm:h-8 bg-gray-600/10 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                    <User className="w-3 h-3 sm:w-4 sm:h-4 text-gray-600" />
-                  </div>
-                  <p className="text-gray-600 text-sm sm:text-base">Maintain DOT compliance and safety standards</p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          <div className="mt-12 sm:mt-16 text-center">
-            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
-              <CardContent className="p-6 sm:p-8">
-                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Independent Contractor Status</h3>
-                <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
-                  You operate as an independent contractor under our authority. You&apos;re responsible for your own 
-                  taxes, workers&apos; compensation, and benefits. We provide the freight opportunities and handle 
-                  the administrative burden of broker relationships and compliance.
-                </p>
-              </CardContent>
-            </Card>
+                  <CardTitle className="text-xl sm:text-2xl font-bold text-gray-900">Owner-Operator Support</CardTitle>
+                </CardHeader>
+                <CardContent className="text-center px-6 sm:px-8 pb-6 sm:pb-8">
+                  <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
+                    Dedicated support for owner-operators with competitive rates and reliable settlements
+                  </p>
+                </CardContent>
+              </Card>
+            </MotionCard>
           </div>
         </div>
       </section>
@@ -585,7 +594,7 @@ export default function Home() {
               Ready to partner with Tiger Hill Transport LLC? Contact us to learn more about our owner-operator opportunities.
             </p>
           </div>
-          <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-6 sm:gap-12 pb-4 sm:pb-0">
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-6 sm:gap-12">
             <div>
               <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-6">Company Information</h3>
               <div className="space-y-2 sm:space-y-6">
@@ -689,6 +698,16 @@ export default function Home() {
               </CardContent>
             </Card>
 
+            {/* Mobile Get In Touch Button */}
+            <div className="md:hidden mt-6">
+              <Button 
+                onClick={openMobileForm}
+                className="w-full bg-orange-400 hover:bg-orange-500 text-white rounded-lg py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
+              >
+                Get In Touch
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
+            </div>
 
           </div>
         </div>
