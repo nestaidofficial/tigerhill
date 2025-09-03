@@ -17,6 +17,7 @@ export default function Home() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     message: ""
   });
   const [showMobileForm, setShowMobileForm] = useState(false);
@@ -135,7 +136,7 @@ export default function Home() {
 
       if (response.ok) {
         setSubmitMessage(data.message);
-        setFormData({ name: "", email: "", message: "" });
+        setFormData({ name: "", email: "", phone: "", message: "" });
         // Close mobile form on successful submission
         if (window.innerWidth <= 768) {
           setShowMobileForm(false);
@@ -191,11 +192,11 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-background overflow-x-hidden">
+    <div className="min-h-screen bg-background overflow-hidden">
       {/* Hero Section */}
-      <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{ overflow: 'hidden', WebkitOverflowScrolling: 'touch' }}>
         {/* Background Image */}
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 overflow-hidden">
         <Image
             src="/Hero_img.png"
             alt="Tiger Hill Transport truck on mountain road"
@@ -207,7 +208,7 @@ export default function Home() {
         {/* Dark gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
         
-        <div className="relative z-10 text-center text-white px-4 sm:px-6 max-w-6xl mx-auto">
+        <div className="relative z-10 text-center text-white px-4 sm:px-6 max-w-6xl mx-auto overflow-hidden">
           <MotionDiv className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 tracking-tight leading-tight">
             TIGER HILL TRANSPORT LLC
           </MotionDiv>
@@ -572,9 +573,9 @@ export default function Home() {
       </section>
 
       {/* Contact Form Section */}
-      <section id="contact" className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 bg-gradient-to-br from-gray-900 to-gray-800">
+      <section id="contact" className="py-8 sm:py-20 lg:py-24 px-4 sm:px-6 bg-gradient-to-br from-gray-900 to-gray-800">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+          <div className="text-center mb-8 sm:mb-16 lg:mb-20">
             <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-orange-400 to-orange-500 rounded-2xl mb-6 sm:mb-8 shadow-lg">
               <Mail className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
             </div>
@@ -584,10 +585,10 @@ export default function Home() {
               Ready to partner with Tiger Hill Transport LLC? Contact us to learn more about our owner-operator opportunities.
             </p>
           </div>
-          <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12">
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-6 sm:gap-12 pb-4 sm:pb-0">
             <div>
-              <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">Company Information</h3>
-              <div className="space-y-4 sm:space-y-6">
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-6">Company Information</h3>
+              <div className="space-y-2 sm:space-y-6">
                 <div className="flex items-center">
                   <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/10 rounded-full flex items-center justify-center mr-3 sm:mr-4 flex-shrink-0">
                     <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
@@ -644,6 +645,21 @@ export default function Home() {
                       className="rounded-lg border-gray-300 focus:border-gray-900 focus:ring-gray-900/10 px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base transition-all duration-200 hover:border-gray-400 bg-gray-50/50"
                     />
                   </div>
+                  
+                  <div>
+                    <Label htmlFor="phone-desktop" className="text-gray-900 font-semibold mb-2 sm:mb-3 block text-sm sm:text-base">Phone Number</Label>
+                    <Input
+                      id="phone-desktop"
+                      name="phone"
+                      type="tel"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      placeholder="(555) 123-4567"
+                      required
+                      className="rounded-lg border-gray-300 focus:border-gray-900 focus:ring-gray-900/10 px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base transition-all duration-200 hover:border-gray-400 bg-gray-50/50"
+                    />
+                  </div>
+                  
                   <div>
                     <Label htmlFor="message-desktop" className="text-gray-900 font-semibold mb-2 sm:mb-3 block text-sm sm:text-base">Message</Label>
                     <Textarea
@@ -705,7 +721,7 @@ export default function Home() {
               right: 0,
               bottom: 0,
               background: 'transparent',
-              zIndex: 9998,
+              zIndex: 9997,
             }}
           />
           
@@ -762,6 +778,8 @@ export default function Home() {
                 padding: '0 1.25rem 1.25rem',
                 background: '#f8f9fa',
                 transform: 'translateZ(0)',
+                position: 'relative',
+                zIndex: 9999,
               }}
             >
               <div className="max-w-md mx-auto">
@@ -771,7 +789,7 @@ export default function Home() {
                 
                 <form key="contact-form-mobile" onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <Label htmlFor="name-mobile" style={{ display: 'block', fontWeight: 500, color: '#495057', marginBottom: '0.5rem', fontSize: '0.875rem' }}>
+                    <Label htmlFor="name-mobile" style={{ display: 'block', fontWeight: 500, color: '#495057', marginBottom: '0.5rem', fontSize: '0.875rem', position: 'relative', zIndex: 10000 }}>
                       Name
                     </Label>
                     <Input
@@ -795,6 +813,8 @@ export default function Home() {
                         color: '#212529',
                         marginBottom: '1rem',
                         boxSizing: 'border-box',
+                        position: 'relative',
+                        zIndex: 10000,
                       }}
                       onFocus={(e) => {
                         e.target.style.outline = 'none';
@@ -809,7 +829,7 @@ export default function Home() {
                   </div>
 
                   <div>
-                    <Label htmlFor="email-mobile" style={{ display: 'block', fontWeight: 500, color: '#495057', marginBottom: '0.5rem', fontSize: '0.875rem' }}>
+                    <Label htmlFor="email-mobile" style={{ display: 'block', fontWeight: 500, color: '#495057', marginBottom: '0.5rem', fontSize: '0.875rem', position: 'relative', zIndex: 10000 }}>
                       Email
                     </Label>
                     <Input
@@ -835,6 +855,8 @@ export default function Home() {
                         color: '#212529',
                         marginBottom: '1rem',
                         boxSizing: 'border-box',
+                        position: 'relative',
+                        zIndex: 10000,
                       }}
                       onFocus={(e) => {
                         e.target.style.outline = 'none';
@@ -849,7 +871,49 @@ export default function Home() {
                   </div>
                   
                   <div>
-                    <Label htmlFor="message-mobile" style={{ display: 'block', fontWeight: 500, color: '#495057', marginBottom: '0.5rem', fontSize: '0.875rem' }}>
+                    <Label htmlFor="phone-mobile" style={{ display: 'block', fontWeight: 500, color: '#495057', marginBottom: '0.5rem', fontSize: '0.875rem', position: 'relative', zIndex: 10000 }}>
+                      Phone Number
+                    </Label>
+                    <Input
+                      id="phone-mobile"
+                      name="phone"
+                      type="tel"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      placeholder="(555) 123-4567"
+                      required
+                      autoComplete="tel"
+                      enterKeyHint="next"
+                      inputMode="tel"
+                      style={{
+                        width: '100%',
+                        padding: '1rem',
+                        border: '1px solid #dee2e6',
+                        borderRadius: '0.75rem',
+                        fontSize: '1rem',
+                        lineHeight: 1.5,
+                        transition: 'all 0.2s ease',
+                        background: 'white',
+                        color: '#212529',
+                        marginBottom: '1rem',
+                        boxSizing: 'border-box',
+                        position: 'relative',
+                        zIndex: 10000,
+                      }}
+                      onFocus={(e) => {
+                        e.target.style.outline = 'none';
+                        e.target.style.borderColor = '#007bff';
+                        e.target.style.boxShadow = '0 0 0 3px rgba(0, 123, 255, 0.1)';
+                      }}
+                      onBlur={(e) => {
+                        e.target.style.borderColor = '#dee2e6';
+                        e.target.style.boxShadow = 'none';
+                      }}
+                    />
+                  </div>
+                  
+                  <div>
+                    <Label htmlFor="message-mobile" style={{ display: 'block', fontWeight: 500, color: '#495057', marginBottom: '0.5rem', fontSize: '0.875rem', position: 'relative', zIndex: 10000 }}>
                       Message
                     </Label>
                     <Textarea
@@ -875,6 +939,8 @@ export default function Home() {
                         marginBottom: '1rem',
                         boxSizing: 'border-box',
                         resize: 'none',
+                        position: 'relative',
+                        zIndex: 10000,
                       }}
                       onFocus={(e) => {
                         e.target.style.outline = 'none';
@@ -906,6 +972,8 @@ export default function Home() {
                       boxShadow: 'none',
                       transform: 'translateZ(0)',
                       marginTop: '1rem',
+                      position: 'relative',
+                      zIndex: 10000,
                     }}
                     onMouseEnter={(e) => e.currentTarget.style.background = '#495057'}
                     onMouseLeave={(e) => e.currentTarget.style.background = '#6c757d'}

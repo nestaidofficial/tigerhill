@@ -6,10 +6,10 @@ const resend = new Resend(process.env.RESEND_API_KEY || 'your_resend_api_key_her
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, message } = body;
+    const { name, email, phone, message } = body;
 
     // Validate required fields
-    if (!name || !email || !message) {
+    if (!name || !email || !phone || !message) {
       return NextResponse.json(
         { error: 'All fields are required' },
         { status: 400 }
@@ -21,6 +21,15 @@ export async function POST(request: NextRequest) {
     if (!emailRegex.test(email)) {
       return NextResponse.json(
         { error: 'Invalid email format' },
+        { status: 400 }
+      );
+    }
+
+    // Validate phone format (basic validation)
+    const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+    if (!phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''))) {
+      return NextResponse.json(
+        { error: 'Invalid phone number format' },
         { status: 400 }
       );
     }
@@ -49,6 +58,11 @@ export async function POST(request: NextRequest) {
               <div style="margin-bottom: 20px;">
                 <strong style="color: #586f7c;">Email:</strong>
                 <p style="margin: 5px 0; color: #2f4550;">${email}</p>
+              </div>
+              
+              <div style="margin-bottom: 20px;">
+                <strong style="color: #586f7c;">Phone:</strong>
+                <p style="margin: 5px 0; color: #2f4550;">${phone}</p>
               </div>
               
               <div style="margin-bottom: 20px;">
@@ -84,7 +98,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Log the submission
-    console.log('Contact form submission:', { name, email, message });
+    console.log('Contact form submission:', { name, email, phone, message });
 
     return NextResponse.json(
       { 
